@@ -51,6 +51,18 @@ class TestStorage(unittest.TestCase):
         self.assertEqual(fetched_updated["review_status"], "verified_violation")
         self.assertEqual(fetched_updated["review_notes"], "Verified by traffic inspector.")
 
+        # Update review status to approved
+        updated_app = update_review_status(rec_id, "approved", "Approved by reviewer.")
+        self.assertTrue(updated_app)
+        fetched_app = get_compliance_record(rec_id)
+        self.assertEqual(fetched_app["review_status"], "approved")
+
+        # Update review status to disapproved
+        updated_dis = update_review_status(rec_id, "disapproved", "Disapproved: false positive.")
+        self.assertTrue(updated_dis)
+        fetched_dis = get_compliance_record(rec_id)
+        self.assertEqual(fetched_dis["review_status"], "disapproved")
+
         # Clean up
         deleted = delete_compliance_record(rec_id)
         self.assertTrue(deleted)

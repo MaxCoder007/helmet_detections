@@ -320,7 +320,10 @@ def order_tokens_into_reading_sequence(raw_results: List[Any]) -> List[Tuple[str
 
     valid_boxes = []
     for b in boxes_info:
-        if len(b["text"]) <= 3 and b["h"] < (0.35 * median_h) and b["conf"] < 0.50:
+        # Filter tiny height noise tokens (e.g. screws, frame borders, shadows, reflections)
+        if b["h"] < (0.40 * median_h) and b["conf"] < 0.25:
+            continue
+        if len(b["text"]) <= 3 and b["h"] < (0.50 * median_h) and b["conf"] < 0.50:
             continue
         valid_boxes.append(b)
 
@@ -361,7 +364,8 @@ def order_tokens_into_reading_sequence(raw_results: List[Any]) -> List[Tuple[str
 def extract_plate_substrings(raw_str: str) -> List[str]:
     """
     Extract sub-sequences that match potential Indian registration prefixes:
-    Removes leading frame/dealer badges (e.g. '6L7', 'INO', '4O', 'RB', 'CK').
+    Removes leading frame/dealer badges (e.g. '6L7', 'IND', 'INO', '4O', 'RB', 'CK').
+    Preserves full plate prefixes when series letters coincidentally match state codes.
     """
     cleaned = re.sub(r"[^A-Za-z0-9]", "", raw_str).upper()
     if len(cleaned) < 5:
@@ -369,7 +373,37 @@ def extract_plate_substrings(raw_str: str) -> List[str]:
 
     candidates = [cleaned]
 
-    # Look for valid 2-letter state codes in the string, or state codes with 1 digit substitution (e.g. K4->KA, 0L->DL)
+    # 1. Check if the string already starts with a valid state code (or 1-char digit substitution, e.g. 1S->TS, 0L->DL)
+    c0 = cleaned[0]
+    c1 = cleaned[1]
+    c0_c = DIGIT_TO_LETTER.get(c0, c0)
+    c1_c = DIGIT_TO_LETTER.get(c1, c1)
+    cand_sc = c0_c + c1_c
+    if cand_sc in INDIAN_STATE_CODES:
+        # String already starts with a valid state code!
+        # Do NOT scan internal positions for state codes, because series letters (like 'NL', 'AP', 'KA', 'MH')
+        # often match state codes and would falsely truncate the true plate.
+        if cand_sc != cleaned[:2]:
+            sub_corr = cand_sc + cleaned[2:]
+            if sub_corr not in candidates:
+                candidates.append(sub_corr)
+        return candidates
+
+    # 2. Check for single leading frame/bracket stroke before a valid state code (e.g. 1TS09..., ITS09..., |TS09...)
+    if len(cleaned) >= 6:
+        s0 = cleaned[1]
+        s1 = cleaned[2]
+        s0_c = DIGIT_TO_LETTER.get(s0, s0)
+        s1_c = DIGIT_TO_LETTER.get(s1, s1)
+        if (s0_c + s1_c) in INDIAN_STATE_CODES:
+            sub1 = (s0_c + s1_c) + cleaned[3:]
+            if sub1 not in candidates:
+                candidates.append(sub1)
+            if cleaned[1:] not in candidates:
+                candidates.append(cleaned[1:])
+            return candidates
+
+    # 3. If it does not start with a valid state code, scan for the FIRST occurrence of a valid state code (e.g. INDTS09..., DEALERKA01...)
     for i in range(len(cleaned) - 4):
         c0 = cleaned[i]
         c1 = cleaned[i+1]
@@ -382,6 +416,8 @@ def extract_plate_substrings(raw_str: str) -> List[str]:
                 candidates.append(sub)
             if cleaned[i:] not in candidates:
                 candidates.append(cleaned[i:])
+            # Once we locate the primary registration start, stop scanning so subsequent series letters are preserved
+            break
 
     # Look for Bharat series prefix (e.g. 22BH...)
     bh_match = re.search(r"[0-9]{2}BH", cleaned)
@@ -396,14 +432,26 @@ def extract_plate_substrings(raw_str: str) -> List[str]:
 def generate_registration_hypotheses(raw_plate: str) -> List[str]:
     """
     Generate plausible character-confusion hypotheses for Indian registration syntax:
-    - Position 0-1: State code letters (0->O, 1->I, 8->B, 5->S, 4->A, 2->Z)
+    - Position 0-1: State code letters (0->O, 1->I, 8->B, 5->S, 4->A, 2->Z, 7->T)
     - Position 2-3: District code digits (O->0, D->0, Q->0, I->1, L->1, B->8, S->5, Z->2)
     - Trailing 4 positions: Serial digits (O->0, I->1, B->8, S->5, Z->2, A->4, G->6)
+    - Trims phantom 5th edge digits caused by plate frames, screws, or mounting brackets
     """
     base_strings = extract_plate_substrings(raw_plate)
     hypotheses = list(base_strings)
 
-    for base in base_strings:
+    # Add edge-trimmed hypotheses for strings ending with 5 serial digits (e.g. TS09NL07861 -> TS09NL0786)
+    for b in list(base_strings):
+        if re.search(r"[0-9]{5}$", b):
+            trim_end = b[:-1]
+            if trim_end not in hypotheses:
+                hypotheses.append(trim_end)
+            if b[-5] in ('1', '0', 'I'):
+                trim_start = b[:-5] + b[-4:]
+                if trim_start not in hypotheses:
+                    hypotheses.append(trim_start)
+
+    for base in list(hypotheses):
         if len(base) < 5:
             continue
 
@@ -460,11 +508,16 @@ def score_plate_candidate(candidate: str, avg_conf: float) -> Tuple[float, Dict[
         len_penalty = 0.45
 
     if PATTERN_STANDARD.match(cleaned):
+        # Completeness bonus: Full standard plate (State + 1-2 district + 1-3 series + 4 serial digits)
+        # e.g. TS09NL0786, KA01AB1234, DL8CAF5030 decisively outscores truncated 6-7 char fragments
+        is_full_standard = bool(re.match(r"^[A-Z]{2}[0-9]{1,2}[A-Z]{1,3}[0-9]{4}$", cleaned))
+        completeness_bonus = 0.40 if is_full_standard else 0.0
+
         if is_valid_state:
-            score = (avg_conf * 1.5 + 0.60) * len_penalty
+            score = (avg_conf * 1.5 + 0.60 + completeness_bonus) * len_penalty
             return score, {"is_valid": True, "format_type": "standard", "state_code": state_code, "status": "valid"}
         else:
-            score = (avg_conf * 1.1 + 0.20) * len_penalty
+            score = (avg_conf * 1.1 + 0.20 + completeness_bonus) * len_penalty
             return score, {"is_valid": True, "format_type": "standard", "state_code": state_code, "status": "uncertain"}
 
     if PATTERN_BHARAT.match(cleaned):

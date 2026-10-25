@@ -8,8 +8,10 @@ import {
   Eye,
   CheckCircle2,
   Search,
+  Download,
 } from 'lucide-react';
 import { formatConfidence } from '@/utils/formatters';
+import { downloadComplianceRecord } from '@/utils/exportUtils';
 import { ComplianceInspectModal } from './ComplianceInspectModal';
 
 interface ComplianceTableProps {
@@ -245,16 +247,28 @@ export const ComplianceTable: React.FC<ComplianceTableProps> = ({
                         </span>
                       )}
 
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleInspect(item);
-                        }}
-                        className="p-1 rounded text-text-muted hover:text-accent-cyan hover:bg-background-hover transition-colors ml-auto"
-                        title="Inspect evidence details"
-                      >
-                        <Eye className="w-3.5 h-3.5" />
-                      </button>
+                      <div className="flex items-center gap-1.5 ml-auto">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            downloadComplianceRecord(item, 'json');
+                          }}
+                          className="p-1 rounded text-text-muted hover:text-accent-cyan hover:bg-background-hover transition-colors"
+                          title="Download this compliance record dossier (JSON)"
+                        >
+                          <Download className="w-3.5 h-3.5 text-accent-cyan" />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleInspect(item);
+                          }}
+                          className="p-1 rounded text-text-muted hover:text-accent-cyan hover:bg-background-hover transition-colors"
+                          title="Inspect evidence details"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   </td>
                 </tr>

@@ -38,6 +38,16 @@ interface DetectionContextType {
   history: HistoryRecord[];
   clearHistory: () => void;
   loadHistoryRecord: (record: HistoryRecord) => void;
+  updateHistoryRecordApproval: (
+    recordId: string,
+    status: 'approved' | 'disapproved' | 'pending',
+    notes?: string
+  ) => void;
+  updateDetectionApproval: (
+    historyId: string,
+    detectionId: string,
+    status: 'approved' | 'disapproved' | 'pending'
+  ) => void;
 }
 
 const DetectionContext = createContext<DetectionContextType | undefined>(undefined);
@@ -224,9 +234,17 @@ export const DetectionProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         filename: activeFile.name,
         fileSize: activeFile.size,
         originalImageUrl: activePreviewUrl,
-        result,
+        result: {
+          ...result,
+          detections: result.detections.map((d, idx) => ({
+            ...d,
+            id: d.id || `det_${Date.now()}_${idx}`,
+            approval_status: d.approval_status || 'pending',
+          })),
+        },
         analysisType: 'image',
         records: result.records,
+        approval_status: 'pending',
       };
 
       setHistory((prev) => [historyRecord, ...prev]);
@@ -252,6 +270,66 @@ export const DetectionProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setStatus('success');
     setErrorMessage(null);
     setHighlightedDetectionId(null);
+  };
+
+  // Update whole history record approval
+  const updateHistoryRecordApproval = (
+    recordId: string,
+    approvalStatus: 'approved' | 'disapproved' | 'pending',
+    notes?: string
+  ) => {
+    setHistory((prev) =>
+      prev.map((item) => {
+        if (item.id !== recordId) return item;
+        return {
+          ...item,
+          approval_status: approvalStatus,
+          approved_at: approvalStatus !== 'pending' ? new Date().toISOString() : undefined,
+          approval_notes: notes,
+          result: {
+            ...item.result,
+            detections: item.result.detections.map((d) => ({
+              ...d,
+              approval_status: approvalStatus,
+            })),
+          },
+        };
+      })
+    );
+  };
+
+  // Update specific detection within a history record
+  const updateDetectionApproval = (
+    historyId: string,
+    detectionId: string,
+    approvalStatus: 'approved' | 'disapproved' | 'pending'
+  ) => {
+    setHistory((prev) =>
+      prev.map((item) => {
+        if (item.id !== historyId) return item;
+        const updatedDetections = item.result.detections.map((d) => {
+          if ((d.id || '') === detectionId) {
+            return { ...d, approval_status: approvalStatus };
+          }
+          return d;
+        });
+
+        const allApproved = updatedDetections.length > 0 && updatedDetections.every((d) => d.approval_status === 'approved');
+        const anyDisapproved = updatedDetections.some((d) => d.approval_status === 'disapproved');
+        const derivedStatus: 'approved' | 'disapproved' | 'pending' = anyDisapproved
+          ? 'disapproved'
+          : (allApproved ? 'approved' : 'pending');
+
+        return {
+          ...item,
+          approval_status: derivedStatus,
+          result: {
+            ...item.result,
+            detections: updatedDetections,
+          },
+        };
+      })
+    );
   };
 
   // Clear session history
@@ -281,6 +359,8 @@ export const DetectionProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         history,
         clearHistory,
         loadHistoryRecord,
+        updateHistoryRecordApproval,
+        updateDetectionApproval,
       }}
     >
       {children}

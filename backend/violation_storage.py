@@ -10,6 +10,8 @@ Provides:
 """
 
 import os
+import io
+import csv
 import sqlite3
 import json
 import time
@@ -336,8 +338,12 @@ def list_violations(
         params.append(date_to.strip())
 
     count_query = f"SELECT COUNT(*) FROM ({query})"
-    query += " ORDER BY violation_timestamp DESC, created_at DESC LIMIT ? OFFSET ?"
-    params_for_query = list(params) + [limit, offset]
+    if limit > 0:
+        query += " ORDER BY violation_timestamp DESC, created_at DESC LIMIT ? OFFSET ?"
+        params_for_query = list(params) + [limit, offset]
+    else:
+        query += " ORDER BY violation_timestamp DESC, created_at DESC"
+        params_for_query = list(params)
 
     with get_db_connection() as conn:
         total = conn.execute(count_query, params).fetchone()[0]
@@ -452,3 +458,44 @@ def get_violation_summary_stats() -> Dict[str, Any]:
         "pending_reviews": pending,
         "reviewed_records": reviewed,
     }
+
+
+def export_violations_csv(records: List[Dict[str, Any]]) -> str:
+    """Generate RFC-4180 compliant CSV string for violation records."""
+    fieldnames = [
+        "id",
+        "violation_timestamp",
+        "registration_number",
+        "manual_registration_number",
+        "effective_registration",
+        "ocr_status",
+        "ocr_confidence",
+        "plate_detection_confidence",
+        "violation_type",
+        "vehicle_association_status",
+        "review_status",
+        "review_notes",
+        "reviewed_at",
+        "source_type",
+        "source_reference",
+        "rider_bbox",
+        "plate_bbox",
+        "helmet_bbox",
+        "notes",
+        "created_at",
+    ]
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=fieldnames, extrasaction="ignore")
+    writer.writeheader()
+    for r in records:
+        effective = r.get("manual_registration_number") or r.get("registration_number") or ""
+        row_dict = {
+            **r,
+            "effective_registration": effective,
+            "rider_bbox": json.dumps(r.get("rider_bbox")) if r.get("rider_bbox") else "",
+            "plate_bbox": json.dumps(r.get("plate_bbox")) if r.get("plate_bbox") else "",
+            "helmet_bbox": json.dumps(r.get("helmet_bbox")) if r.get("helmet_bbox") else "",
+        }
+        writer.writerow(row_dict)
+    return output.getvalue()
+

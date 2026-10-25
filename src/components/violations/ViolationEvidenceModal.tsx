@@ -6,6 +6,7 @@ import {
 import { getEvidenceUrl, updateViolationReview } from '@/services/violationApi';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { downloadViolationRecord } from '@/utils/exportUtils';
 import {
   X,
   ShieldAlert,
@@ -16,6 +17,7 @@ import {
   Save,
   Check,
   Hash,
+  Download,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { formatTime } from '@/utils/formatters';
@@ -387,20 +389,46 @@ export const ViolationEvidenceModal: React.FC<ViolationEvidenceModalProps> = ({
               </div>
             )}
 
-            <div className="flex justify-end gap-2 pt-2">
-              <Button variant="secondary" size="sm" onClick={onClose}>
-                Close
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={handleSave}
-                disabled={isSaving}
-                className="flex items-center gap-1.5"
-              >
-                <Save className="w-4 h-4" />
-                {isSaving ? 'Saving...' : 'Save Review Changes'}
-              </Button>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-border">
+              {/* Individual record download buttons */}
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => downloadViolationRecord(violation, 'json')}
+                  title="Download full violation dossier as JSON"
+                  className="flex items-center gap-1.5 text-xs text-text-secondary hover:text-accent-cyan"
+                >
+                  <Download className="w-3.5 h-3.5 text-accent-cyan" />
+                  <span>Download Dossier (JSON)</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => downloadViolationRecord(violation, 'csv')}
+                  title="Download violation record as CSV"
+                  className="flex items-center gap-1.5 text-xs text-text-secondary hover:text-accent-green"
+                >
+                  <Download className="w-3.5 h-3.5 text-accent-green" />
+                  <span>Download CSV</span>
+                </Button>
+              </div>
+
+              <div className="flex items-center gap-2 self-end sm:self-auto">
+                <Button variant="secondary" size="sm" onClick={onClose}>
+                  Close
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={handleSave}
+                  disabled={isSaving}
+                  className="flex items-center gap-1.5"
+                >
+                  <Save className="w-4 h-4" />
+                  {isSaving ? 'Saving...' : 'Save Review Changes'}
+                </Button>
+              </div>
             </div>
           </div>
         </div>

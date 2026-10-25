@@ -64,5 +64,16 @@ class TestAPI(unittest.TestCase):
             self.assertIn("records", rec_data)
             self.assertIn("total", rec_data)
 
+            # 5. Test approve and disapprove review endpoints
+            if rec_data["records"]:
+                test_rec_id = rec_data["records"][0]["id"]
+                resp_app = client.patch(f"/records/{test_rec_id}/review", json={"review_status": "approved", "review_notes": "Approved test"})
+                self.assertEqual(resp_app.status_code, 200)
+                self.assertEqual(resp_app.json()["review_status"], "approved")
+
+                resp_dis = client.patch(f"/records/{test_rec_id}/review", json={"review_status": "disapproved", "review_notes": "Disapproved test"})
+                self.assertEqual(resp_dis.status_code, 200)
+                self.assertEqual(resp_dis.json()["review_status"], "disapproved")
+
 if __name__ == "__main__":
     unittest.main()

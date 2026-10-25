@@ -454,6 +454,58 @@ class TestViolationRegister(unittest.TestCase):
             self.assertIn("violations", data)
             self.assertIn("violations_recorded", data)
 
+    # 15. Export all violations as CSV and JSON
+    def test_export_all_violations_csv_and_json(self):
+        rec_id = insert_violation_record({
+            "registration_number": "DL9CAA1234",
+            "ocr_status": "recognized",
+            "ocr_confidence": 0.95,
+            "vehicle_association_status": "confirmed",
+            "source_type": "image",
+            "source_reference": "export_test.jpg",
+        })
+        with TestClient(app) as client:
+            # CSV export
+            res_csv = client.get("/api/violations/export?format=csv")
+            self.assertEqual(res_csv.status_code, 200)
+            self.assertEqual(res_csv.headers["content-type"], "text/csv; charset=utf-8")
+            self.assertIn("attachment; filename=", res_csv.headers["content-disposition"])
+            self.assertIn("DL9CAA1234", res_csv.text)
+            self.assertIn("violation_timestamp", res_csv.text)
+
+            # JSON export
+            res_json = client.get("/api/violations/export?format=json")
+            self.assertEqual(res_json.status_code, 200)
+            self.assertEqual(res_json.headers["content-type"], "application/json")
+            self.assertIn("attachment; filename=", res_json.headers["content-disposition"])
+            data = res_json.json()
+            self.assertIn("records", data)
+            self.assertGreaterEqual(data["total_records"], 1)
+
+    # 16. Export single violation record as JSON and CSV
+    def test_export_single_violation_json_and_csv(self):
+        rec_id = insert_violation_record({
+            "registration_number": "TS09NL0786",
+            "ocr_status": "recognized",
+            "ocr_confidence": 0.92,
+            "vehicle_association_status": "confirmed",
+            "source_type": "image",
+            "source_reference": "single_export_test.jpg",
+        })
+        with TestClient(app) as client:
+            # JSON single export
+            res_json = client.get(f"/api/violations/{rec_id}/export?format=json")
+            self.assertEqual(res_json.status_code, 200)
+            self.assertEqual(res_json.headers["content-type"], "application/json")
+            data = res_json.json()
+            self.assertEqual(data["id"], rec_id)
+            self.assertEqual(data["registration_number"], "TS09NL0786")
+
+            # CSV single export
+            res_csv = client.get(f"/api/violations/{rec_id}/export?format=csv")
+            self.assertEqual(res_csv.status_code, 200)
+            self.assertIn("TS09NL0786", res_csv.text)
+
 
 if __name__ == "__main__":
     unittest.main()

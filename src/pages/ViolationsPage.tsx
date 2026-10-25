@@ -6,9 +6,10 @@ import {
   ViolationRecord,
   ViolationStats,
 } from '@/types/violation';
-import { fetchViolations, getEvidenceUrl } from '@/services/violationApi';
+import { fetchViolations, getEvidenceUrl, getExportViolationsUrl } from '@/services/violationApi';
 import { ViolationEvidenceModal } from '@/components/violations/ViolationEvidenceModal';
 import { formatTime } from '@/utils/formatters';
+import { downloadAllViolations, downloadViolationRecord } from '@/utils/exportUtils';
 import {
   ShieldAlert,
   Search,
@@ -23,6 +24,7 @@ import {
   Database,
   X,
   FileCheck,
+  Download,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
@@ -115,6 +117,40 @@ export const ViolationsPage: React.FC = () => {
     loadViolations();
   };
 
+  const handleExportAll = (format: 'csv' | 'json') => {
+    try {
+      const url = getExportViolationsUrl(
+        settings.apiBaseUrl,
+        {
+          registration: searchReg.trim() || undefined,
+          ocr_status: ocrFilter,
+          review_status: reviewFilter,
+          association_status: assocFilter,
+          date_from: dateFrom || undefined,
+          date_to: dateTo || undefined,
+        },
+        format
+      );
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `roadvision_violations_${Date.now()}.${format}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch {
+      downloadAllViolations(records, format);
+    }
+  };
+
+  const handleDownloadRecord = (
+    e: React.MouseEvent,
+    record: ViolationRecord,
+    format: 'json' | 'csv' = 'json'
+  ) => {
+    e.stopPropagation();
+    downloadViolationRecord(record, format);
+  };
+
   const currentPage = Math.floor(offset / limit) + 1;
   const totalPages = Math.max(1, Math.ceil(totalCount / limit));
 
@@ -134,7 +170,31 @@ export const ViolationsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2.5">
+          {/* Download all data options */}
+          <div className="flex items-center rounded-lg border border-border bg-background-card overflow-hidden">
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => handleExportAll('csv')}
+              title="Download all matching violations as CSV spreadsheet"
+              className="flex items-center gap-1.5 border-r border-border rounded-r-none text-xs hover:text-accent-green"
+            >
+              <Download className="w-3.5 h-3.5 text-accent-green" />
+              <span>Export CSV</span>
+            </Button>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => handleExportAll('json')}
+              title="Download all matching violations as JSON database dump"
+              className="flex items-center gap-1.5 rounded-l-none text-xs hover:text-accent-cyan"
+            >
+              <Download className="w-3.5 h-3.5 text-accent-cyan" />
+              <span>Export JSON</span>
+            </Button>
+          </div>
+
           <Button
             variant="secondary"
             size="sm"
@@ -488,19 +548,31 @@ export const ViolationsPage: React.FC = () => {
 
                       {/* Actions */}
                       <td className="py-3 px-4 text-right">
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedViolation(r);
-                            setIsModalOpen(true);
-                          }}
-                          className="flex items-center gap-1 text-[11px] py-1 px-2.5 ml-auto"
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                          Review
-                        </Button>
+                        <div className="flex items-center justify-end gap-1.5">
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={(e) => handleDownloadRecord(e, r, 'json')}
+                            title="Download Violation Record Dossier (JSON)"
+                            className="flex items-center gap-1 text-[11px] py-1 px-2 text-text-secondary hover:text-accent-cyan"
+                          >
+                            <Download className="w-3.5 h-3.5 text-accent-cyan" />
+                            <span className="hidden sm:inline">Export</span>
+                          </Button>
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedViolation(r);
+                              setIsModalOpen(true);
+                            }}
+                            className="flex items-center gap-1 text-[11px] py-1 px-2.5"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            Review
+                          </Button>
+                        </div>
                       </td>
                     </tr>
                   );

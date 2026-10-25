@@ -3,7 +3,7 @@ export type DetectionClass = 'helmet' | 'no_helmet' | 'number_plate' | 'pillion'
 export type HelmetStatus = 'helmet_detected' | 'no_helmet_detected' | 'uncertain' | 'not_assessed';
 export type OcrStatus = 'recognized' | 'unvalidated' | 'unreadable' | 'no_plate';
 export type AssociationStatus = 'associated' | 'uncertain' | 'no_rider' | 'no_plate';
-export type ReviewStatus = 'pending_review' | 'verified_violation' | 'compliant' | 'dismissed';
+export type ReviewStatus = 'pending_review' | 'verified_violation' | 'compliant' | 'dismissed' | 'approved' | 'disapproved';
 
 export interface BoundingBox {
   x1: number;
@@ -45,6 +45,8 @@ export interface DetectionItem {
     height_pct: number;
     width_pct: number;
   };
+  approval_status?: 'approved' | 'disapproved' | 'pending';
+  approval_notes?: string;
 }
 
 export type ClassCounts = {
@@ -184,6 +186,9 @@ export interface HistoryRecord {
   result: PredictionResult;
   analysisType?: 'image' | 'video' | 'live';
   records?: ComplianceRecord[];
+  approval_status?: 'approved' | 'disapproved' | 'pending';
+  approved_at?: string;
+  approval_notes?: string;
 }
 
 export interface AppSettings {

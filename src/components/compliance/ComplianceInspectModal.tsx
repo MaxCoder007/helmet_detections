@@ -10,9 +10,11 @@ import {
   FileText,
   AlertCircle,
   Check,
+  Download,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { formatConfidence, formatTime } from '@/utils/formatters';
+import { downloadComplianceRecord } from '@/utils/exportUtils';
 import { clsx } from 'clsx';
 
 interface ComplianceInspectModalProps {
@@ -230,13 +232,15 @@ export const ComplianceInspectModal: React.FC<ComplianceInspectModalProps> = ({
                 Inspect evidence and confirm or dismiss this compliance assessment. Automated findings must never be penalized without review.
               </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
                 {(
                   [
-                    { id: 'pending_review', label: 'Pending' },
-                    { id: 'verified_violation', label: 'Verified' },
+                    { id: 'approved', label: 'Approve' },
+                    { id: 'disapproved', label: 'Disapprove' },
+                    { id: 'verified_violation', label: 'Verify Violation' },
                     { id: 'compliant', label: 'Compliant' },
-                    { id: 'dismissed', label: 'Dismissed' },
+                    { id: 'dismissed', label: 'Dismiss' },
+                    { id: 'pending_review', label: 'Pending Review' },
                   ] as const
                 ).map((s) => (
                   <button
@@ -245,7 +249,11 @@ export const ComplianceInspectModal: React.FC<ComplianceInspectModalProps> = ({
                     className={clsx(
                       'px-3 py-2 rounded-lg text-xs font-medium border transition-all text-center',
                       reviewStatus === s.id
-                        ? 'bg-accent-cyan text-background font-semibold border-accent-cyan'
+                        ? s.id === 'approved' || s.id === 'compliant'
+                          ? 'bg-status-success text-background font-semibold border-status-success'
+                          : s.id === 'disapproved' || s.id === 'dismissed'
+                          ? 'bg-status-error text-white font-semibold border-status-error'
+                          : 'bg-accent-cyan text-background font-semibold border-accent-cyan'
                         : 'bg-background-card text-text-secondary border-border hover:text-text-primary'
                     )}
                   >
@@ -267,7 +275,17 @@ export const ComplianceInspectModal: React.FC<ComplianceInspectModalProps> = ({
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-1">
+              <div className="flex items-center justify-between gap-2 pt-2 border-t border-border">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => downloadComplianceRecord(record, 'json')}
+                  leftIcon={<Download className="w-3.5 h-3.5 text-accent-cyan" />}
+                  className="text-xs"
+                >
+                  Download Record
+                </Button>
+
                 <Button
                   size="sm"
                   variant="primary"

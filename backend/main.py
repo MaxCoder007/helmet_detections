@@ -1,4 +1,5 @@
 import os
+import json
 import time
 import uuid
 import base64
@@ -10,7 +11,7 @@ from typing import Optional, List, Dict, Any
 from fastapi import FastAPI, UploadFile, File, Query, HTTPException, status, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse, FileResponse, Response
 import cv2
 import numpy as np
 import torch
@@ -39,6 +40,7 @@ from backend.violation_storage import (
     update_violation,
     get_violation_summary_stats,
     get_evidence_file_path,
+    export_violations_csv,
 )
 from backend.violation_service import process_and_record_violations
 
@@ -691,7 +693,7 @@ def update_record_review(
             detail="Field 'review_status' is required.",
         )
 
-    valid_statuses = {"pending_review", "verified_violation", "compliant", "dismissed"}
+    valid_statuses = {"pending_review", "verified_violation", "compliant", "dismissed", "approved", "disapproved"}
     if new_status not in valid_statuses:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -763,6 +765,103 @@ def get_violation_register(
 def get_violation_stats():
     """Get high-level violation metrics for summary cards."""
     return get_violation_summary_stats()
+
+
+@app.get("/api/violations/export")
+def export_violations(
+    format: str = Query("csv", pattern="^(csv|json)$", description="Export format: 'csv' or 'json'"),
+    registration: Optional[str] = Query(None, description="Search by registration number substring"),
+    ocr_status: Optional[str] = Query(None, description="Filter by OCR status ('recognized', 'unreadable', 'plate_not_detected')"),
+    review_status: Optional[str] = Query(None, description="Filter by review status ('pending', 'reviewed', 'resolved')"),
+    association_status: Optional[str] = Query(None, description="Filter by association status ('confirmed', 'uncertain', 'unavailable')"),
+    date_from: Optional[str] = Query(None, description="Filter from ISO timestamp"),
+    date_to: Optional[str] = Query(None, description="Filter up to ISO timestamp"),
+    violation_type: Optional[str] = Query(None, description="Filter by violation type"),
+):
+    """
+    Export all matching violation records as a downloadable CSV or JSON attachment.
+    Supports all filter options (unpaginated full dataset export).
+    """
+    data = list_violations(
+        limit=-1,
+        offset=0,
+        registration=registration,
+        ocr_status=ocr_status,
+        review_status=review_status,
+        association_status=association_status,
+        date_from=date_from,
+        date_to=date_to,
+        violation_type=violation_type,
+    )
+    records = data.get("records", [])
+    now_str = time.strftime("%Y%m%d_%H%M%S")
+
+    if format == "csv":
+        csv_content = export_violations_csv(records)
+        filename = f"roadvision_violations_export_{now_str}.csv"
+        return Response(
+            content=csv_content,
+            media_type="text/csv",
+            headers={
+                "Content-Disposition": f'attachment; filename="{filename}"',
+                "Access-Control-Expose-Headers": "Content-Disposition",
+            }
+        )
+    else:
+        export_payload = {
+            "exported_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "total_records": len(records),
+            "records": records,
+        }
+        json_content = json.dumps(export_payload, indent=2)
+        filename = f"roadvision_violations_export_{now_str}.json"
+        return Response(
+            content=json_content,
+            media_type="application/json",
+            headers={
+                "Content-Disposition": f'attachment; filename="{filename}"',
+                "Access-Control-Expose-Headers": "Content-Disposition",
+            }
+        )
+
+
+@app.get("/api/violations/{violation_id}/export")
+def export_single_violation(
+    violation_id: str,
+    format: str = Query("json", pattern="^(json|csv)$", description="Export format: 'json' or 'csv'")
+):
+    """Export single violation record dossier as a downloadable JSON or CSV attachment."""
+    viol = get_violation(violation_id)
+    if not viol:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Violation record '{violation_id}' not found."
+        )
+
+    reg_tag = viol.get("manual_registration_number") or viol.get("registration_number") or violation_id
+
+    if format == "csv":
+        csv_content = export_violations_csv([viol])
+        filename = f"violation_{reg_tag}_{violation_id}.csv"
+        return Response(
+            content=csv_content,
+            media_type="text/csv",
+            headers={
+                "Content-Disposition": f'attachment; filename="{filename}"',
+                "Access-Control-Expose-Headers": "Content-Disposition",
+            }
+        )
+    else:
+        json_content = json.dumps(viol, indent=2)
+        filename = f"violation_{reg_tag}_{violation_id}.json"
+        return Response(
+            content=json_content,
+            media_type="application/json",
+            headers={
+                "Content-Disposition": f'attachment; filename="{filename}"',
+                "Access-Control-Expose-Headers": "Content-Disposition",
+            }
+        )
 
 
 @app.get("/api/violations/{violation_id}")

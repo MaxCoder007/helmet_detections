@@ -376,5 +376,38 @@ class TestNumberPlateOCR(unittest.TestCase):
         self.assertEqual(len(otsu_out.shape), 2)
 
 
+    # 19. Internal series matching state code must not truncate primary state
+    def test_internal_series_state_code_not_truncated(self):
+        # 'NL' is Nagaland, but in 'TS09NL0786' it is the series for Telangana (TS)
+        subs = extract_plate_substrings("TS09NL0786")
+        self.assertIn("TS09NL0786", subs)
+        self.assertNotIn("NL0786", subs)
+
+        # 'MH' is Maharashtra, but in 'KA05MH1234' it is the series for Karnataka (KA)
+        subs_ka = extract_plate_substrings("KA05MH1234")
+        self.assertIn("KA05MH1234", subs_ka)
+        self.assertNotIn("MH1234", subs_ka)
+
+    # 20. Phantom trailing digit from plate frame/screw trimming
+    def test_phantom_trailing_digit_edge_trimming(self):
+        # TS09NL07861 has 5 serial digits where trailing '1' is plate frame artifact
+        hyps = generate_registration_hypotheses("TS09NL07861")
+        self.assertIn("TS09NL0786", hyps)
+
+        # Score comparison: TS09NL0786 must win over TS09NL07861
+        score_trimmed, meta_trimmed = score_plate_candidate("TS09NL0786", 0.90)
+        score_raw, meta_raw = score_plate_candidate("TS09NL07861", 0.90)
+        self.assertTrue(meta_trimmed["is_valid"])
+        self.assertEqual(meta_trimmed["format_type"], "standard")
+        self.assertGreater(score_trimmed, score_raw)
+
+    # 21. Full standard plate completeness bonus outscores fragment
+    def test_full_plate_completeness_outscores_truncated_fragment(self):
+        # Even with equal confidence, 10-char full standard plate must decisively outscore 6-char fragment
+        score_full, _ = score_plate_candidate("TS09NL0786", 0.85)
+        score_frag, _ = score_plate_candidate("NL0786", 0.85)
+        self.assertGreater(score_full, score_frag)
+
+
 if __name__ == "__main__":
     unittest.main()

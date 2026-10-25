@@ -78,3 +78,34 @@ export async function updateViolationReview(
   const data = await resp.json();
   return data.record;
 }
+
+export function getExportViolationsUrl(
+  baseUrl: string,
+  params: ViolationQueryParams = {},
+  format: 'csv' | 'json' = 'csv'
+): string {
+  const query = new URLSearchParams();
+  query.append('format', format);
+  if (params.registration) query.append('registration', params.registration);
+  if (params.ocr_status && params.ocr_status !== 'all') query.append('ocr_status', params.ocr_status);
+  if (params.review_status && params.review_status !== 'all') query.append('review_status', params.review_status);
+  if (params.association_status && params.association_status !== 'all') {
+    query.append('association_status', params.association_status);
+  }
+  if (params.date_from) query.append('date_from', params.date_from);
+  if (params.date_to) query.append('date_to', params.date_to);
+  if (params.violation_type && params.violation_type !== 'all') {
+    query.append('violation_type', params.violation_type);
+  }
+  const cleanBase = baseUrl.replace(/\/+$/, '');
+  return `${cleanBase}/api/violations/export?${query.toString()}`;
+}
+
+export function getExportSingleViolationUrl(
+  baseUrl: string,
+  violationId: string,
+  format: 'json' | 'csv' = 'json'
+): string {
+  const cleanBase = baseUrl.replace(/\/+$/, '');
+  return `${cleanBase}/api/violations/${encodeURIComponent(violationId)}/export?format=${format}`;
+}

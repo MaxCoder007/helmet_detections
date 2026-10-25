@@ -24,8 +24,10 @@ import {
   CheckCircle2,
   ShieldCheck,
   Layers,
+  Download,
 } from 'lucide-react';
 import { clsx } from 'clsx';
+import { downloadAnalysisResult } from '@/utils/exportUtils';
 
 export const ImageDetectionPage: React.FC = () => {
   const {
@@ -389,6 +391,44 @@ export const ImageDetectionPage: React.FC = () => {
           {/* Results Workspace: Activated once inference completes */}
           {hasResult && activeResult ? (
             <div className="space-y-6">
+              {/* Data Collection & Export Action Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 bg-background-card border border-border rounded-xl">
+                <div>
+                  <h4 className="text-xs font-semibold text-text-primary flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-status-success" />
+                    <span>Inference Complete & Data Collected</span>
+                  </h4>
+                  <p className="text-[11px] text-text-muted mt-0.5">
+                    {activeResult.detections.length} total objects identified ({activeResult.counts.rider} riders, {activeResult.counts.number_plate} plates) in {formatDuration(activeResult.inference_time_ms)}.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center rounded-lg border border-border bg-background-secondary overflow-hidden">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => downloadAnalysisResult(activeResult, 'roadvision_analysis', 'csv')}
+                      title="Download collected detection records as CSV"
+                      className="flex items-center gap-1.5 border-r border-border rounded-r-none text-xs hover:text-accent-green"
+                    >
+                      <Download className="w-3.5 h-3.5 text-accent-green" />
+                      <span>Export CSV</span>
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => downloadAnalysisResult(activeResult, 'roadvision_analysis', 'json')}
+                      title="Download complete analysis result with compliance & metadata as JSON"
+                      className="flex items-center gap-1.5 rounded-l-none text-xs hover:text-accent-cyan"
+                    >
+                      <Download className="w-3.5 h-3.5 text-accent-cyan" />
+                      <span>Export JSON</span>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
               {/* Summary Stats Header Bar */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div className="bg-background-card border border-border rounded-xl p-3">
