@@ -1,3 +1,7 @@
+Run commands:-
+Backend:-python -m uvicorn backend.main:app --port 8000
+Frontend:-npm run dev
+
 # 🏍️ RoadVision AI: Helmet & Number Plate Detection Using YOLO11n
 
 An AI-powered computer vision system and modern analytics dashboard that detects **helmets**, **no-helmet safety violations**, **number plates**, **pillion passengers**, and **riders** in motorcycle and road traffic images using a fine-tuned **YOLO11n** (You Only Look Once) deep learning model.

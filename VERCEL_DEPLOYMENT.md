@@ -49,13 +49,14 @@ git push origin main
    * **Output Directory**: `dist`
    * **Install Command**: `npm install`
 
-### Step 3: Configure Environment Variables (CRITICAL for PyTorch)
-In the Vercel project configuration, expand **Environment Variables** and add:
+### Step 3: Configure Environment Variables (Optional)
+Vercel reserves the `VERCEL_` prefix for internal system variables, so you **do not** need to add any system flags. New projects automatically run on Vercel Fluid Compute.
+
+You can leave Environment Variables completely blank, or optionally configure client defaults:
 
 | Variable Name | Value | Purpose |
 | :--- | :--- | :--- |
-| `VERCEL_SUPPORT_LARGE_FUNCTIONS` | `1` | **Required**: Unlocks up to 5 GB function bundle limit on Vercel Fluid Compute for PyTorch & YOLO weights. |
-| `VITE_DEMO_MODE` | `false` | Set to `true` only if you want to force browser simulation mode. |
+| `VITE_DEMO_MODE` | `false` | Set to `true` if you ever want to force simulated browser detections. |
 | `VITE_DEFAULT_CONF` | `0.25` | Default detection confidence threshold (strictly $\ge 0.05$). |
 | `VITE_DEFAULT_IOU` | `0.45` | Default Intersection-over-Union threshold. |
 
