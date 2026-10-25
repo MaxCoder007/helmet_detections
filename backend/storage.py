@@ -12,11 +12,22 @@ import sqlite3
 import json
 import time
 import os
+import tempfile
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
-DB_DIR = Path(__file__).resolve().parent.parent / "results"
-DB_DIR.mkdir(parents=True, exist_ok=True)
+is_vercel = bool(os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))
+if is_vercel:
+    DB_DIR = Path(tempfile.gettempdir()) / "results"
+else:
+    DB_DIR = Path(__file__).resolve().parent.parent / "results"
+
+try:
+    DB_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    DB_DIR = Path(tempfile.gettempdir()) / "results"
+    DB_DIR.mkdir(parents=True, exist_ok=True)
+
 DB_PATH = DB_DIR / "roadvision.db"
 
 # Memory buffer for live / video deduplication: plate -> last_recorded_timestamp

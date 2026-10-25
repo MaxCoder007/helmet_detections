@@ -63,14 +63,27 @@ app.add_middleware(
 # Base Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_PATH = BASE_DIR / "models" / "best.pt"
-RESULTS_DIR = BASE_DIR / "results"
-RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+is_vercel = bool(os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))
+if is_vercel:
+    import tempfile
+    RESULTS_DIR = Path(tempfile.gettempdir()) / "results"
+else:
+    RESULTS_DIR = BASE_DIR / "results"
+
+try:
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    import tempfile
+    RESULTS_DIR = Path(tempfile.gettempdir()) / "results"
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Mount static directory to serve annotated result images
 app.mount("/results", StaticFiles(directory=str(RESULTS_DIR)), name="results")
 
 # Global model container
 model: Optional[YOLO] = None
+_services_initialized: bool = False
 CLASS_NAMES: Dict[int, str] = {
     0: "helmet",
     1: "no_helmet",
@@ -164,9 +177,18 @@ def startup_services():
         print(f"[WARN] OCR initialization deferred: {e}")
 
 
+def ensure_initialized():
+    """Ensure database and model are initialized on-demand (essential for serverless runtimes)."""
+    global _services_initialized
+    if not _services_initialized or model is None:
+        startup_services()
+        _services_initialized = True
+
+
 @app.get("/health")
 def health_check():
     """Health check endpoint to verify backend status, model readiness, and OCR capability."""
+    ensure_initialized()
     is_ready = model is not None
     ocr_ready = get_ocr_reader() is not None
     diag = get_model_diagnostics()
@@ -251,6 +273,7 @@ async def predict_image(
     """
     # Strict policy: ALWAYS keep confidence threshold at or above 5% (0.05)
     conf = max(0.05, float(conf))
+    ensure_initialized()
     if model is None:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -657,6 +680,7 @@ def get_records(
     violation_only: bool = Query(False, description="Filter for violation candidates only"),
 ):
     """Retrieve compliance records with search and pagination."""
+    ensure_initialized()
     return list_compliance_records(
         limit=limit,
         offset=offset,
@@ -746,6 +770,7 @@ def get_violation_register(
     violation_type: Optional[str] = Query(None, description="Filter by violation type"),
 ):
     """Retrieve paginated violation records with comprehensive filtering and summary metrics."""
+    ensure_initialized()
     data = list_violations(
         limit=limit,
         offset=offset,

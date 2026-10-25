@@ -1,0 +1,23 @@
+# Vercel Deployment Ignore File
+# Excludes caches, test files, local databases, and temporary development artifacts
+
+# Tests & caches
+tests/
+results/
+scratch/
+.pytest_cache/
+*.log
+__pycache__/
+*.pyc
+
+# Local databases and journals
+*.db
+*.db-journal
+
+# Scripts & developer tools
+start_app.bat
+
+# Git & local environments
+.git
+.github
+.env.local

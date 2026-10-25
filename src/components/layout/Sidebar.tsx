@@ -8,6 +8,7 @@ import {
   History,
   ShieldAlert,
   Shield,
+  Settings,
   X,
 } from 'lucide-react';
 import { clsx } from 'clsx';
@@ -51,6 +52,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       to: '/violations',
       label: 'Violation Register',
       icon: ShieldAlert,
+    },
+    {
+      to: '/settings',
+      label: 'Settings',
+      icon: Settings,
     },
   ];
 

@@ -17,18 +17,35 @@ import json
 import time
 import uuid
 from pathlib import Path
+import os
+import tempfile
 from typing import List, Dict, Any, Optional, Tuple
 import cv2
 import numpy as np
 
 # Base paths
 BASE_DIR = Path(__file__).resolve().parent.parent
-RESULTS_DIR = BASE_DIR / "results"
-RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+is_vercel = bool(os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))
+if is_vercel:
+    RESULTS_DIR = Path(tempfile.gettempdir()) / "results"
+else:
+    RESULTS_DIR = BASE_DIR / "results"
+
+try:
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    RESULTS_DIR = Path(tempfile.gettempdir()) / "results"
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
 DB_PATH = RESULTS_DIR / "roadvision.db"
 
 EVIDENCE_DIR = RESULTS_DIR / "evidence" / "violations"
-EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+try:
+    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    EVIDENCE_DIR = Path(tempfile.gettempdir()) / "results" / "evidence" / "violations"
+    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def get_db_connection() -> sqlite3.Connection:

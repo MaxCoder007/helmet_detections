@@ -13,6 +13,9 @@ Performs:
 9. Honest unreadable plate detection without character fabrication or hallucination.
 """
 
+import os
+import tempfile
+from pathlib import Path
 import re
 import base64
 import threading
@@ -26,11 +29,14 @@ _ocr_inference_lock = threading.Lock()
 _easyocr_reader = None
 _ocr_disabled = False
 
+is_vercel = bool(os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))
+
 
 def get_ocr_reader():
     """
     Thread-safe lazy initialization of EasyOCR reader instance.
     Reuses a single model instance across requests.
+    Uses tempfile directory for weight storage in serverless environments.
     """
     global _easyocr_reader, _ocr_disabled
     if _ocr_disabled:
@@ -41,8 +47,12 @@ def get_ocr_reader():
             if _easyocr_reader is None and not _ocr_disabled:
                 try:
                     import easyocr
-                    # Initialize with English, CPU execution, verbose=False
-                    _easyocr_reader = easyocr.Reader(['en'], gpu=False, verbose=False)
+                    if is_vercel:
+                        model_dir = Path(tempfile.gettempdir()) / "easyocr_models"
+                        model_dir.mkdir(parents=True, exist_ok=True)
+                        _easyocr_reader = easyocr.Reader(['en'], gpu=False, verbose=False, model_storage_directory=str(model_dir))
+                    else:
+                        _easyocr_reader = easyocr.Reader(['en'], gpu=False, verbose=False)
                 except Exception as e:
                     print(f"[ERROR] Failed to initialize EasyOCR: {e}")
                     _easyocr_reader = None

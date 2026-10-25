@@ -6,6 +6,7 @@ import { VideoAnalysisPage } from '@/pages/VideoAnalysisPage';
 import { LiveVideoPage } from '@/pages/LiveVideoPage';
 import { HistoryPage } from '@/pages/HistoryPage';
 import { ViolationsPage } from '@/pages/ViolationsPage';
+import { SettingsPage } from '@/pages/SettingsPage';
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: 'violations',
         element: <ViolationsPage />,
+      },
+      {
+        path: 'settings',
+        element: <SettingsPage />,
       },
       {
         path: '*',

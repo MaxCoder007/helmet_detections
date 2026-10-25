@@ -48,9 +48,23 @@ export const DETECTION_CLASSES: Record<DetectionClass, ClassConfig> = {
   },
 };
 
+const getDefaultApiBaseUrl = (): string => {
+  if (typeof import.meta.env.VITE_API_BASE_URL === 'string') {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+  if (
+    typeof window !== 'undefined' &&
+    window.location.hostname !== 'localhost' &&
+    window.location.hostname !== '127.0.0.1'
+  ) {
+    return ''; // Same-origin when deployed on Vercel
+  }
+  return 'http://127.0.0.1:8000';
+};
+
 export const DEFAULT_SETTINGS: AppSettings = {
   mode: 'debug',
-  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000',
+  apiBaseUrl: getDefaultApiBaseUrl(),
   confidenceThreshold: Math.max(0.05, Number(import.meta.env.VITE_DEFAULT_CONF) || 0.25),
   iouThreshold: Number(import.meta.env.VITE_DEFAULT_IOU) || 0.45,
   imageSize: Number(import.meta.env.VITE_DEFAULT_IMGSZ) || 1280,

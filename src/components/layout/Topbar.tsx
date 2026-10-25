@@ -28,6 +28,10 @@ export const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
         return 'Live Video Analysis';
       case '/history':
         return 'Analysis History';
+      case '/violations':
+        return 'Violation Register';
+      case '/settings':
+        return 'Settings & Configuration';
       default:
         return 'RoadVision AI';
     }
