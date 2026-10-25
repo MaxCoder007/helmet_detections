@@ -1,0 +1,239 @@
+{
+  "path": "Jupyter Notebook (Cell 118)",
+  "image_path": "G:\\My Drive\\computervision\\Helmet-NumberPlate-Merged\\test\\images\\6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+  "image_width": 640,
+  "image_height": 640,
+  "model_path": "G:\\My Drive\\helmet-number-plate-detection\\models\\best.pt",
+  "model_sha256": "804aa5e8c5b4e56df7eca9d18a7f6bdb9e1ab87dc30203f8fdf1578429a344ef",
+  "parameters": {
+    "imgsz": 1280,
+    "conf": 0.001,
+    "iou": 0.7,
+    "max_det": 300,
+    "device": "cpu"
+  },
+  "total_detections": 17,
+  "detections": [
+    {
+      "index": 1,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.9251,
+      "confidence_pct": "92.51%",
+      "bbox": [
+        259.63,
+        68.81,
+        327.33,
+        199.75
+      ]
+    },
+    {
+      "index": 2,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.8304,
+      "confidence_pct": "83.04%",
+      "bbox": [
+        185.61,
+        411.44,
+        288.51,
+        450.25
+      ]
+    },
+    {
+      "index": 3,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.6224,
+      "confidence_pct": "62.24%",
+      "bbox": [
+        187.11,
+        596.57,
+        467.65,
+        639.17
+      ]
+    },
+    {
+      "index": 4,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.2642,
+      "confidence_pct": "26.42%",
+      "bbox": [
+        371.29,
+        49.75,
+        430.72,
+        162.31
+      ]
+    },
+    {
+      "index": 5,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.1824,
+      "confidence_pct": "18.24%",
+      "bbox": [
+        372.79,
+        78.55,
+        429.56,
+        158.84
+      ]
+    },
+    {
+      "index": 6,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0882,
+      "confidence_pct": "8.82%",
+      "bbox": [
+        183.49,
+        597.97,
+        353.17,
+        639.8
+      ]
+    },
+    {
+      "index": 7,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0615,
+      "confidence_pct": "6.15%",
+      "bbox": [
+        0.0,
+        0.18,
+        300.33,
+        285.45
+      ]
+    },
+    {
+      "index": 8,
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.0505,
+      "confidence_pct": "5.05%",
+      "bbox": [
+        370.8,
+        50.65,
+        430.83,
+        160.95
+      ]
+    },
+    {
+      "index": 9,
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0146,
+      "confidence_pct": "1.46%",
+      "bbox": [
+        0.0,
+        15.25,
+        298.03,
+        322.79
+      ]
+    },
+    {
+      "index": 10,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0141,
+      "confidence_pct": "1.41%",
+      "bbox": [
+        286.33,
+        594.87,
+        567.09,
+        639.39
+      ]
+    },
+    {
+      "index": 11,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0132,
+      "confidence_pct": "1.32%",
+      "bbox": [
+        0.0,
+        0.0,
+        306.8,
+        193.7
+      ]
+    },
+    {
+      "index": 12,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0032,
+      "confidence_pct": "0.32%",
+      "bbox": [
+        268.94,
+        121.59,
+        324.62,
+        200.77
+      ]
+    },
+    {
+      "index": 13,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0015,
+      "confidence_pct": "0.15%",
+      "bbox": [
+        334.83,
+        340.19,
+        382.76,
+        364.62
+      ]
+    },
+    {
+      "index": 14,
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0014,
+      "confidence_pct": "0.14%",
+      "bbox": [
+        495.67,
+        487.42,
+        639.05,
+        586.85
+      ]
+    },
+    {
+      "index": 15,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0013,
+      "confidence_pct": "0.13%",
+      "bbox": [
+        618.67,
+        353.58,
+        640.0,
+        415.27
+      ]
+    },
+    {
+      "index": 16,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0012,
+      "confidence_pct": "0.12%",
+      "bbox": [
+        610.21,
+        400.89,
+        639.97,
+        506.63
+      ]
+    },
+    {
+      "index": 17,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0011,
+      "confidence_pct": "0.11%",
+      "bbox": [
+        65.45,
+        597.77,
+        341.66,
+        639.75
+      ]
+    }
+  ]
+}

@@ -1,235 +1,254 @@
 import React from 'react';
-import { useDetection } from '@/context/DetectionContext';
-import { StatCard } from '@/components/dashboard/StatCard';
-import { ClassBreakdownChart } from '@/components/dashboard/ClassBreakdownChart';
-import { RecentAnalysisList } from '@/components/dashboard/RecentAnalysisList';
-import { Card, CardHeader } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
 import {
-  ScanEye,
+  ImageIcon,
+  Film,
+  Video,
   ShieldCheck,
+  ShieldAlert,
   CreditCard,
-  Layers,
+  User,
+  Users,
+  Upload,
+  Cpu,
+  CheckCircle2,
   ArrowRight,
-  Sparkles,
-  Info,
 } from 'lucide-react';
-import { calculateComplianceRate } from '@/utils/formatters';
+import { Button } from '@/components/ui/Button';
+import { useDetection } from '@/context/DetectionContext';
+import { clsx } from 'clsx';
 
 export const OverviewPage: React.FC = () => {
-  const { history, health, settings } = useDetection();
+  const { health } = useDetection();
 
-  // Aggregate session metrics
-  const sessionImagesAnalyzed = history.length;
-  const sessionTotalObjects = history.reduce(
-    (sum, item) => sum + item.result.detections.length,
-    0
-  );
+  const isModelReady = health.status === 'ok' && health.model_loaded;
 
-  const sessionCounts = history.reduce(
-    (acc, item) => {
-      acc.helmet += item.result.counts.helmet || 0;
-      acc.no_helmet += item.result.counts.no_helmet || 0;
-      acc.number_plate += item.result.counts.number_plate || 0;
-      acc.rider += item.result.counts.rider || 0;
-      acc.pillion += item.result.counts.pillion || 0;
-      return acc;
+  const targetClasses = [
+    {
+      name: 'Helmet',
+      icon: ShieldCheck,
+      color: 'text-detection-helmet',
+      bgColor: 'bg-detection-helmet/10 border-detection-helmet/20',
+      description: 'Protective safety helmet worn by a motorcycle rider or pillion passenger.',
     },
-    { helmet: 0, no_helmet: 0, number_plate: 0, rider: 0, pillion: 0 }
-  );
+    {
+      name: 'No Helmet',
+      icon: ShieldAlert,
+      color: 'text-detection-no_helmet',
+      bgColor: 'bg-detection-no_helmet/10 border-detection-no_helmet/20',
+      description: 'Motorcycle occupant detected without protective headgear.',
+    },
+    {
+      name: 'Number Plate',
+      icon: CreditCard,
+      color: 'text-detection-number_plate',
+      bgColor: 'bg-detection-number_plate/10 border-detection-number_plate/20',
+      description: 'Vehicle license registration plate located and extracted via EasyOCR for Indian vehicle formats.',
+    },
+    {
+      name: 'Rider',
+      icon: User,
+      color: 'text-detection-rider',
+      bgColor: 'bg-detection-rider/10 border-detection-rider/20',
+      description: 'Primary motorcycle driver seated at the handlebars controlling the vehicle.',
+    },
+    {
+      name: 'Pillion Passenger',
+      icon: Users,
+      color: 'text-detection-pillion',
+      bgColor: 'bg-detection-pillion/10 border-detection-pillion/20',
+      description: 'Secondary passenger seated behind the primary rider.',
+    },
+  ];
 
-  const complianceRate = calculateComplianceRate(sessionCounts);
-
-  const averageInferenceTime =
-    sessionImagesAnalyzed > 0
-      ? Math.round(
-          history.reduce((sum, item) => sum + item.result.inference_time_ms, 0) /
-            sessionImagesAnalyzed
-        )
-      : 0;
+  const steps = [
+    {
+      step: '1',
+      title: 'Upload Content',
+      desc: 'Upload a road traffic image or select a video file to inspect.',
+      icon: Upload,
+    },
+    {
+      step: '2',
+      title: 'AI Analysis',
+      desc: 'YOLO11n evaluates the image, localizing helmets, riders, and number plates.',
+      icon: Cpu,
+    },
+    {
+      step: '3',
+      title: 'Review Results',
+      desc: 'Inspect bounding boxes, confidence scores, and download annotated images.',
+      icon: CheckCircle2,
+    },
+  ];
 
   return (
-    <div className="space-y-6">
-      {/* Hero Welcome Banner */}
-      <div className="relative rounded-2xl bg-gradient-to-r from-background-card via-background-card to-background-secondary border border-border p-6 sm:p-8 overflow-hidden">
-        {/* Subtle decorative glow */}
-        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-accent-cyan/10 blur-3xl pointer-events-none" />
+    <div className="space-y-10 py-2">
+      {/* A. Welcome Section */}
+      <section className="space-y-4">
+        <div className="max-w-2xl space-y-3">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+            Welcome to RoadVision AI
+          </h2>
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
+            An AI-powered tool that detects helmets, riders, pillion passengers, and number plates in road images and videos, extracts registration numbers via OCR, and records safety compliance.
+          </p>
+        </div>
 
-        <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30 mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>AI Motorcycle Safety Intelligence</span>
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center gap-3 pt-2">
+          <Link to="/image-analysis">
+            <Button size="md" variant="primary" leftIcon={<ImageIcon className="w-4 h-4" />}>
+              Analyze an Image
+            </Button>
+          </Link>
+
+          <Link to="/video-analysis">
+            <Button size="md" variant="secondary" leftIcon={<Film className="w-4 h-4" />}>
+              Analyze a Video
+            </Button>
+          </Link>
+
+          <Link to="/live-analysis">
+            <Button size="md" variant="outline" leftIcon={<Video className="w-4 h-4" />}>
+              Open Live Video Analysis
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* E. Model Status (Compact, Truthful) */}
+      <section>
+        <div
+          className={clsx(
+            'p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs',
+            isModelReady
+              ? 'bg-background-card border-border'
+              : 'bg-status-warning/10 border-status-warning/30 text-status-warning'
+          )}
+        >
+          <div className="flex items-center gap-2.5">
+            <span
+              className={clsx(
+                'w-2.5 h-2.5 rounded-full shrink-0',
+                isModelReady ? 'bg-status-success' : 'bg-status-warning'
+              )}
+            />
+            <div>
+              <span className="font-semibold text-text-primary">
+                {isModelReady
+                  ? 'YOLO11n Detector Ready'
+                  : 'Backend Service Notice'}
+              </span>
+              <p className="text-text-secondary text-[11px] mt-0.5">
+                {isModelReady
+                  ? 'Connected to FastAPI backend with trained weights (models/best.pt)'
+                  : 'FastAPI backend is offline. Run `python -m uvicorn backend.main:app --port 8000` to enable live model inference.'}
+              </p>
+            </div>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
-            RoadVision AI Dashboard
-          </h2>
+          <Link
+            to="/image-analysis"
+            className="text-accent-cyan hover:underline font-medium flex items-center gap-1 shrink-0"
+          >
+            <span>Start Analysis</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </section>
 
-          <p className="text-sm text-text-secondary mt-2 leading-relaxed">
-            Real-time computer vision system using YOLO11n to detect helmet compliance, safety violations, license plates, and motorcycle occupants from road and traffic imagery.
+      {/* B. About the Model */}
+      <section className="space-y-3">
+        <h3 className="text-base font-semibold text-text-primary">About the Model</h3>
+        <div className="bg-background-card border border-border rounded-xl p-5">
+          <p className="text-xs text-text-secondary mb-4 leading-relaxed">
+            RoadVision AI uses a fine-tuned YOLO11n (Nano) convolutional neural network trained specifically to detect motorcycle road safety elements in traffic scenes with high localization speed.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 mt-6">
-            <Link to="/detect">
-              <Button size="lg" variant="primary" leftIcon={<ScanEye className="w-4 h-4" />}>
-                Launch Image Detection
-              </Button>
-            </Link>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
+            <div className="p-3 rounded-lg bg-background-secondary border border-border-subtle">
+              <span className="text-[11px] text-text-muted">Model</span>
+              <div className="font-medium text-xs text-text-primary mt-0.5">YOLO11n</div>
+            </div>
 
-            <Link to="/model-info">
-              <Button size="lg" variant="outline" rightIcon={<ArrowRight className="w-4 h-4" />}>
-                View Model Specs
-              </Button>
-            </Link>
+            <div className="p-3 rounded-lg bg-background-secondary border border-border-subtle">
+              <span className="text-[11px] text-text-muted">Framework</span>
+              <div className="font-medium text-xs text-text-primary mt-0.5">Ultralytics</div>
+            </div>
+
+            <div className="p-3 rounded-lg bg-background-secondary border border-border-subtle">
+              <span className="text-[11px] text-text-muted">Task</span>
+              <div className="font-medium text-xs text-text-primary mt-0.5">Object Detection</div>
+            </div>
+
+            <div className="p-3 rounded-lg bg-background-secondary border border-border-subtle">
+              <span className="text-[11px] text-text-muted">Classes</span>
+              <div className="font-medium text-xs text-text-primary mt-0.5">5 Categories</div>
+            </div>
+
+            <div className="p-3 rounded-lg bg-background-secondary border border-border-subtle">
+              <span className="text-[11px] text-text-muted">Resolution</span>
+              <div className="font-medium text-xs text-text-primary mt-0.5">640 × 640 px</div>
+            </div>
+
+            <div className="p-3 rounded-lg bg-background-secondary border border-border-subtle">
+              <span className="text-[11px] text-text-muted">Backend</span>
+              <div className="font-medium text-xs text-text-primary mt-0.5">FastAPI REST</div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Session Notice Note */}
-      <div className="p-3.5 rounded-xl bg-background-card/60 border border-border flex items-start gap-3 text-xs text-text-secondary">
-        <Info className="w-4 h-4 text-accent-cyan shrink-0 mt-0.5" />
-        <div>
-          <span className="font-semibold text-text-primary">Session-Based Statistics: </span>
-          The figures below reflect real inference results processed during your current browser session. Upload photos in the workspace to evaluate the detector.
-        </div>
-      </div>
-
-      {/* Key Metric Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
-          title="Images Analyzed (Session)"
-          value={sessionImagesAnalyzed}
-          subtitle={sessionImagesAnalyzed === 1 ? '1 image processed' : `${sessionImagesAnalyzed} images processed`}
-          icon={<ScanEye className="w-5 h-5 text-accent-cyan" />}
-          glowColor="cyan"
-        />
-
-        <StatCard
-          title="Total Detections"
-          value={sessionTotalObjects}
-          subtitle={`Avg ${averageInferenceTime}ms latency`}
-          icon={<Layers className="w-5 h-5 text-purple-400" />}
-          glowColor="pink"
-        />
-
-        <StatCard
-          title="Helmet Compliance Rate"
-          value={complianceRate !== null ? `${complianceRate}%` : 'N/A'}
-          subtitle={
-            complianceRate !== null
-              ? `${sessionCounts.helmet} compliant / ${sessionCounts.no_helmet} violations`
-              : 'No helmet data yet'
-          }
-          icon={<ShieldCheck className="w-5 h-5 text-status-success" />}
-          glowColor="emerald"
-        />
-
-        <StatCard
-          title="Number Plates Identified"
-          value={sessionCounts.number_plate}
-          subtitle={`${sessionCounts.rider} riders, ${sessionCounts.pillion} pillions`}
-          icon={<CreditCard className="w-5 h-5 text-accent-cyan" />}
-          glowColor="cyan"
-        />
-      </div>
-
-      {/* Visual Analytics Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Class Breakdown Chart (2 Cols) */}
-        <Card className="lg:col-span-2">
-          <CardHeader
-            title="Session Detection Distribution"
-            subtitle="Counts per class across all analyzed images in this session"
-            action={
-              <span className="text-xs font-mono text-accent-cyan">
-                {sessionTotalObjects} total
-              </span>
-            }
-          />
-          <ClassBreakdownChart counts={sessionCounts} totalObjects={sessionTotalObjects} />
-        </Card>
-
-        {/* Model & System Specs Card */}
-        <Card>
-          <CardHeader
-            title="Detector Status"
-            subtitle="Configured YOLO11n weights"
-          />
-
-          <div className="space-y-3.5 text-xs">
-            <div className="flex items-center justify-between pb-2.5 border-b border-border-subtle">
-              <span className="text-text-secondary">Model Checkpoint</span>
-              <span className="font-mono font-semibold text-text-primary">
-                models/best.pt
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between pb-2.5 border-b border-border-subtle">
-              <span className="text-text-secondary">Architecture</span>
-              <span className="font-semibold text-accent-cyan">
-                YOLO11n (Ultralytics)
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between pb-2.5 border-b border-border-subtle">
-              <span className="text-text-secondary">Input Resolution</span>
-              <span className="font-mono text-text-primary">
-                {settings.imageSize} × {settings.imageSize} px
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between pb-2.5 border-b border-border-subtle">
-              <span className="text-text-secondary">Confidence Threshold</span>
-              <span className="font-mono text-text-primary">
-                {Math.round(settings.confidenceThreshold * 100)}%
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between pb-2.5 border-b border-border-subtle">
-              <span className="text-text-secondary">Backend API Health</span>
-              <div className="flex items-center gap-1.5">
-                <span
-                  className={`w-2 h-2 rounded-full ${
-                    health.status === 'ok'
-                      ? 'bg-status-success'
-                      : health.status === 'degraded'
-                      ? 'bg-status-warning'
-                      : 'bg-status-error'
-                  }`}
-                />
-                <span className="capitalize font-semibold text-text-primary">
-                  {health.status}
-                </span>
+      {/* C. What Can It Detect? */}
+      <section className="space-y-3">
+        <h3 className="text-base font-semibold text-text-primary">What Can It Detect?</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {targetClasses.map((item) => (
+            <div
+              key={item.name}
+              className="p-4 rounded-xl bg-background-card border border-border flex items-start gap-3.5"
+            >
+              <div className={clsx('p-2.5 rounded-lg border shrink-0', item.bgColor)}>
+                <item.icon className={clsx('w-5 h-5', item.color)} />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-text-primary">{item.name}</h4>
+                <p className="text-xs text-text-secondary mt-1 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="pt-2">
-              <Link to="/settings" className="w-full block">
-                <Button variant="outline" size="sm" className="w-full">
-                  Configure Settings
-                </Button>
-              </Link>
+      {/* D. How It Works */}
+      <section className="space-y-3">
+        <h3 className="text-base font-semibold text-text-primary">How It Works</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {steps.map((item) => (
+            <div
+              key={item.step}
+              className="p-5 rounded-xl bg-background-card border border-border relative space-y-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="w-7 h-7 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan font-bold text-xs flex items-center justify-center">
+                  {item.step}
+                </span>
+                <item.icon className="w-4 h-4 text-text-muted" />
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-text-primary">{item.title}</h4>
+                <p className="text-xs text-text-secondary mt-1 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
-      </div>
-
-      {/* Recent Analyses in Current Session */}
-      <Card>
-        <CardHeader
-          title="Recent Analyses"
-          subtitle="Images analyzed during current session (Click to reopen in workspace)"
-          action={
-            sessionImagesAnalyzed > 0 && (
-              <Link to="/history" className="text-xs text-accent-cyan hover:underline">
-                View all ({sessionImagesAnalyzed})
-              </Link>
-            )
-          }
-        />
-        <RecentAnalysisList records={history} />
-      </Card>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

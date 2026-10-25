@@ -1,0 +1,173 @@
+{
+  "readable_plates": 12,
+  "exact_matches": 3,
+  "exact_match_accuracy_pct": 25.0,
+  "mean_cer": 0.2549,
+  "ocr_coverage_pct": 91.67,
+  "average_latency_ms": 871.82,
+  "details": [
+    {
+      "id": "plate_01_clear_two_line",
+      "file": "744_jpg.rf.36ef4ae97f8951ae3fa16766d58ae8e3.jpg",
+      "category": "clear_two_line",
+      "ground_truth": "KA04HF8744",
+      "ocr_output": "KA04HF8744",
+      "ocr_confidence": 0.8355,
+      "format_valid": true,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 6803.15
+    },
+    {
+      "id": "plate_02_two_line_clean",
+      "file": "104_jpg.rf.0c38da4519090cb22d986254726cad74.jpg",
+      "category": "clear_two_line",
+      "ground_truth": "KA04JD5128",
+      "ocr_output": "KA04JD5128",
+      "ocr_confidence": 0.9643,
+      "format_valid": true,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 441.22
+    },
+    {
+      "id": "plate_04_punjab_two_line",
+      "file": "119_jpg.rf.f407a9b69968feb2262322791b2b96b7.jpg",
+      "category": "clear_two_line",
+      "ground_truth": "PB13AY4141",
+      "ocr_output": "PB13444141",
+      "ocr_confidence": 0.4959,
+      "format_valid": false,
+      "exact_match": false,
+      "cer": 0.2,
+      "latency_ms": 973.05
+    },
+    {
+      "id": "plate_05_karnataka_confusion",
+      "file": "131_jpg.rf.7e161d4f5a60d61ad06cf4a4075c293e.jpg",
+      "category": "character_confusion",
+      "ground_truth": "KA09HM3422",
+      "ocr_output": "KA09H3422",
+      "ocr_confidence": 0.7903,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.1,
+      "latency_ms": 389.66
+    },
+    {
+      "id": "plate_06_telangana_split",
+      "file": "125_jpg.rf.14ca8548ec662bf9bad9643f1f59858f.jpg",
+      "category": "two_line_split_columns",
+      "ground_truth": "TS07EJ7736",
+      "ocr_output": "TS357936",
+      "ocr_confidence": 0.8013,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.5,
+      "latency_ms": 221.93
+    },
+    {
+      "id": "plate_07_maharashtra_tilted",
+      "file": "123_jpg.rf.829449fb87b8297cdf7d3d6964c3f0df.jpg",
+      "category": "tilted_two_line",
+      "ground_truth": "MH08AT300",
+      "ocr_output": "MH48AT300",
+      "ocr_confidence": 0.6769,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.1111,
+      "latency_ms": 504.34
+    },
+    {
+      "id": "plate_08_karnataka_ind_tag",
+      "file": "121_jpg.rf.b998070ce41ff94bae000b088fb505e6.jpg",
+      "category": "dealer_tag_noise",
+      "ground_truth": "KA02HK3787",
+      "ocr_output": "KA2HK3787",
+      "ocr_confidence": 0.4708,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.1,
+      "latency_ms": 331.58
+    },
+    {
+      "id": "plate_09_uttar_pradesh",
+      "file": "new76_jpg.rf.da1da17ee25b8fceae7e28c54f7d9732.jpg",
+      "category": "moderate_blur",
+      "ground_truth": "UP35T1399",
+      "ocr_output": "UP35121399",
+      "ocr_confidence": 0.4202,
+      "format_valid": false,
+      "exact_match": false,
+      "cer": 0.2222,
+      "latency_ms": 336.04
+    },
+    {
+      "id": "plate_10_tamil_nadu_crowded",
+      "file": "13_jpg.rf.a70178a911c498a8d5a2fc88f0f159cf.jpg",
+      "category": "crowded_scene",
+      "ground_truth": "TN05AR3709",
+      "ocr_output": null,
+      "ocr_confidence": null,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 1.0,
+      "latency_ms": 257.94
+    },
+    {
+      "id": "plate_11_delhi_clear",
+      "file": "104_jpg.rf.0c38da4519090cb22d986254726cad74.jpg",
+      "category": "clear_single_line_variant",
+      "ground_truth": "KA04JD5128",
+      "ocr_output": "KA04JD5128",
+      "ocr_confidence": 0.9643,
+      "format_valid": true,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 391.96
+    },
+    {
+      "id": "plate_12_degraded_unreadable",
+      "file": "new3_jpg.rf.98fb10ef763d0f0432961aa272f6f57e.jpg",
+      "category": "unreadable_blurry",
+      "ground_truth": null,
+      "ocr_output": null,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 132.74
+    },
+    {
+      "id": "plate_13_small_distant",
+      "file": "156_jpg.rf.79b94fdecd3630090dd6ef16f02221e6.jpg",
+      "category": "small_distant",
+      "ground_truth": "KA547916",
+      "ocr_output": "KA541916",
+      "ocr_confidence": 0.9931,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.125,
+      "latency_ms": 160.16
+    },
+    {
+      "id": "plate_14_low_contrast_shadow",
+      "file": "115_jpg.rf.00dd70bdc7f86e59883710b430585b0e.jpg",
+      "category": "low_contrast_shadow",
+      "ground_truth": "TS08EJ8880",
+      "ocr_output": "LJ70JNE888",
+      "ocr_confidence": 0.5581,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.7,
+      "latency_ms": 389.91
+    },
+    {
+      "id": "plate_15_no_plate_scene",
+      "ground_truth": null,
+      "ocr_output": null,
+      "exact_match": true,
+      "cer": 0.0,
+      "category": "zero_plates_negative",
+      "status": "correct_negative"
+    }
+  ]
+}

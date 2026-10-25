@@ -13,5 +13,17 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
+    watch: {
+      ignored: [
+        '**/results/**',
+        '**/models/**',
+        '**/backend/**',
+        '**/tests/**',
+        '**/*.db*',
+        '**/*.pt',
+        '**/.pytest_cache/**',
+        '**/__pycache__/**',
+      ],
+    },
   },
 });

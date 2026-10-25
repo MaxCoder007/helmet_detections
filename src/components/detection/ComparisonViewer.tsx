@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PredictionResult, DetectionClass } from '@/types/detection';
-import { DetectionCanvas } from './DetectionCanvas';
 import { Button } from '@/components/ui/Button';
 import { exportAnnotatedImageBlob } from '@/utils/canvasDrawer';
 import {
   Download,
-  Layers,
   Image as ImageIcon,
   Columns,
   Eye,
@@ -17,74 +15,98 @@ import { useDetection } from '@/context/DetectionContext';
 interface ComparisonViewerProps {
   originalUrl: string;
   result: PredictionResult;
-  highlightedId: string | null;
-  selectedId: string | null;
-  onSelectDetection: (id: string | null) => void;
+  highlightedId?: string | null;
+  selectedId?: string | null;
+  onSelectDetection?: (id: string | null) => void;
   activeFilterClass?: DetectionClass | 'all';
+  onDimensionsUpdate?: (dims: {
+    naturalWidth: number;
+    naturalHeight: number;
+    clientWidth: number;
+    clientHeight: number;
+  }) => void;
 }
 
-type ViewMode = 'overlay' | 'annotated' | 'original' | 'split';
+type ViewMode = 'annotated' | 'original' | 'split';
 
 export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
   originalUrl,
   result,
-  highlightedId,
-  selectedId,
-  onSelectDetection,
   activeFilterClass = 'all',
+  onDimensionsUpdate,
 }) => {
   const { settings } = useDetection();
-  const [viewMode, setViewMode] = useState<ViewMode>('overlay');
-  const [showLabels, setShowLabels] = useState(settings.showLabels);
-  const [showConfidence, setShowConfidence] = useState(settings.showConfidence);
+  const [viewMode, setViewMode] = useState<ViewMode>('annotated');
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+  const [fallbackAnnotatedSrc, setFallbackAnnotatedSrc] = useState<string | null>(null);
 
-  // If backend provided an annotated image URL or base64
-  const hasBackendAnnotatedImage = Boolean(
-    result.annotated_image_url || result.annotated_image_base64
-  );
+  // Direct backend annotated image URL or base64
   const backendAnnotatedSrc =
     result.annotated_image_base64
       ? `data:image/jpeg;base64,${result.annotated_image_base64}`
       : result.annotated_image_url;
 
-  // Download logic
+  // If backend did not supply an annotated image URL (e.g. demo mode), generate a static image fallback
+  useEffect(() => {
+    if (!backendAnnotatedSrc && originalUrl && result.detections.length > 0) {
+      let active = true;
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = originalUrl;
+      img.onload = async () => {
+        try {
+          const blob = await exportAnnotatedImageBlob(img, result.detections, {
+            showLabels: settings.showLabels,
+            showConfidence: settings.showConfidence,
+            activeFilterClass,
+          });
+          if (active) {
+            setFallbackAnnotatedSrc(URL.createObjectURL(blob));
+          }
+        } catch (e) {
+          console.warn('Fallback annotated image generation error:', e);
+        }
+      };
+      return () => {
+        active = false;
+      };
+    }
+  }, [backendAnnotatedSrc, originalUrl, result.detections, activeFilterClass, settings.showLabels, settings.showConfidence]);
+
+  const effectiveAnnotatedSrc = backendAnnotatedSrc || fallbackAnnotatedSrc || originalUrl;
+
+  // Download logic for the current view
   const handleDownload = async () => {
     setIsDownloading(true);
     try {
-      if (backendAnnotatedSrc && viewMode === 'annotated') {
-        // Download directly from backend URL
-        const a = document.createElement('a');
-        a.href = backendAnnotatedSrc!;
-        a.download = `roadvision_${result.filename.replace(/\.[^/.]+$/, '')}_annotated.jpg`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      } else {
-        // Export high-res canvas render
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.src = originalUrl;
-        await new Promise((resolve, reject) => {
-          img.onload = resolve;
-          img.onerror = reject;
-        });
+      const srcToDownload = viewMode === 'original' ? originalUrl : effectiveAnnotatedSrc;
+      if (!srcToDownload) return;
 
-        const blob = await exportAnnotatedImageBlob(img, result.detections, {
-          showLabels,
-          showConfidence,
-          activeFilterClass,
-        });
+      const filenameSuffix = viewMode === 'original' ? 'original' : 'annotated';
+      const downloadFilename = `roadvision_${result.filename.replace(/\.[^/.]+$/, '')}_${filenameSuffix}.jpg`;
 
+      // Try fetching as blob for direct download prompt
+      try {
+        const res = await fetch(srcToDownload);
+        const blob = await res.blob();
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `roadvision_${result.filename.replace(/\.[^/.]+$/, '')}_annotated.jpg`;
+        a.download = downloadFilename;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+      } catch {
+        // Fallback to direct anchor link
+        const a = document.createElement('a');
+        a.href = srcToDownload;
+        a.download = downloadFilename;
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       }
 
       setDownloadSuccess(true);
@@ -103,34 +125,18 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
         {/* View Mode Toggle Buttons */}
         <div className="flex items-center gap-1 bg-background-secondary p-1 rounded-lg border border-border">
           <button
-            onClick={() => setViewMode('overlay')}
+            onClick={() => setViewMode('annotated')}
             className={clsx(
               'px-2.5 py-1 rounded text-xs font-medium transition-all flex items-center gap-1.5',
-              viewMode === 'overlay'
+              viewMode === 'annotated'
                 ? 'bg-accent-cyan text-background font-semibold shadow-sm'
                 : 'text-text-secondary hover:text-text-primary'
             )}
-            title="Interactive bounding boxes with hover inspections"
+            title="Model annotated image showing detected riders, helmets, and number plates"
           >
-            <Layers className="w-3.5 h-3.5" />
-            <span>Interactive Canvas</span>
+            <Eye className="w-3.5 h-3.5" />
+            <span>Annotated Image</span>
           </button>
-
-          {hasBackendAnnotatedImage && (
-            <button
-              onClick={() => setViewMode('annotated')}
-              className={clsx(
-                'px-2.5 py-1 rounded text-xs font-medium transition-all flex items-center gap-1.5',
-                viewMode === 'annotated'
-                  ? 'bg-accent-cyan text-background font-semibold shadow-sm'
-                  : 'text-text-secondary hover:text-text-primary'
-              )}
-              title="Annotated image rendered by backend model"
-            >
-              <Eye className="w-3.5 h-3.5" />
-              <span>Backend Render</span>
-            </button>
-          )}
 
           <button
             onClick={() => setViewMode('original')}
@@ -140,7 +146,7 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
                 ? 'bg-accent-cyan text-background font-semibold shadow-sm'
                 : 'text-text-secondary hover:text-text-primary'
             )}
-            title="Clean original image without boxes"
+            title="Clean original image without bounding boxes"
           >
             <ImageIcon className="w-3.5 h-3.5" />
             <span>Original</span>
@@ -161,35 +167,8 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
           </button>
         </div>
 
-        {/* Right side controls: Labels toggle & Download */}
+        {/* Right side controls: Download Button */}
         <div className="flex items-center gap-2">
-          {viewMode === 'overlay' && (
-            <div className="hidden sm:flex items-center gap-2 px-2 py-1 bg-background-secondary rounded-lg border border-border text-xs text-text-secondary">
-              <label className="flex items-center gap-1.5 cursor-pointer hover:text-text-primary select-none">
-                <input
-                  type="checkbox"
-                  checked={showLabels}
-                  onChange={(e) => setShowLabels(e.target.checked)}
-                  className="rounded bg-background border-border text-accent-cyan focus:ring-accent-cyan/30"
-                />
-                <span>Labels</span>
-              </label>
-
-              <span className="text-text-muted">•</span>
-
-              <label className="flex items-center gap-1.5 cursor-pointer hover:text-text-primary select-none">
-                <input
-                  type="checkbox"
-                  checked={showConfidence}
-                  onChange={(e) => setShowConfidence(e.target.checked)}
-                  className="rounded bg-background border-border text-accent-cyan focus:ring-accent-cyan/30"
-                />
-                <span>Scores</span>
-              </label>
-            </div>
-          )}
-
-          {/* Download Button */}
           <Button
             size="sm"
             variant="outline"
@@ -203,44 +182,51 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
               )
             }
           >
-            <span>{downloadSuccess ? 'Downloaded' : 'Download Result'}</span>
+            <span>{downloadSuccess ? 'Downloaded' : 'Download Image'}</span>
           </Button>
         </div>
       </div>
 
-      {/* Main Image Viewport */}
+      {/* Main Image Viewport (Clean <img> rendering, No interactive canvas) */}
       <div className="relative min-h-[380px] flex items-center justify-center">
-        {viewMode === 'overlay' && (
-          <DetectionCanvas
-            imageUrl={originalUrl}
-            detections={result.detections}
-            highlightedId={highlightedId}
-            selectedId={selectedId}
-            onSelectDetection={onSelectDetection}
-            activeFilterClass={activeFilterClass}
-            showLabels={showLabels}
-            showConfidence={showConfidence}
-            boxThickness={settings.boxThickness}
-            boxOpacity={settings.boxOpacity}
-          />
-        )}
-
-        {viewMode === 'annotated' && backendAnnotatedSrc && (
-          <div className="relative w-full flex items-center justify-center bg-black/60 rounded-lg overflow-hidden border border-border-subtle">
+        {viewMode === 'annotated' && (
+          <div className="relative w-full flex items-center justify-center bg-black/60 rounded-lg overflow-hidden border border-border-subtle p-2">
             <img
-              src={backendAnnotatedSrc}
-              alt="Backend Annotated Result"
-              className="w-full h-auto max-h-[580px] object-contain select-none"
+              src={effectiveAnnotatedSrc}
+              alt="Annotated Detection Result"
+              className="w-full h-auto max-h-[640px] object-contain select-none rounded"
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                if (onDimensionsUpdate) {
+                  onDimensionsUpdate({
+                    naturalWidth: img.naturalWidth,
+                    naturalHeight: img.naturalHeight,
+                    clientWidth: img.clientWidth,
+                    clientHeight: img.clientHeight,
+                  });
+                }
+              }}
             />
           </div>
         )}
 
         {viewMode === 'original' && (
-          <div className="relative w-full flex items-center justify-center bg-black/60 rounded-lg overflow-hidden border border-border-subtle">
+          <div className="relative w-full flex items-center justify-center bg-black/60 rounded-lg overflow-hidden border border-border-subtle p-2">
             <img
               src={originalUrl}
               alt="Original Unprocessed Image"
-              className="w-full h-auto max-h-[580px] object-contain select-none"
+              className="w-full h-auto max-h-[640px] object-contain select-none rounded"
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                if (onDimensionsUpdate) {
+                  onDimensionsUpdate({
+                    naturalWidth: img.naturalWidth,
+                    naturalHeight: img.naturalHeight,
+                    clientWidth: img.clientWidth,
+                    clientHeight: img.clientHeight,
+                  });
+                }
+              }}
             />
           </div>
         )}
@@ -253,11 +239,11 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
                 <span>Original Image</span>
                 <span className="text-text-muted">Unprocessed</span>
               </div>
-              <div className="bg-black/60 rounded flex items-center justify-center overflow-hidden max-h-[400px]">
+              <div className="bg-black/60 rounded flex items-center justify-center overflow-hidden max-h-[460px] p-1">
                 <img
                   src={originalUrl}
                   alt="Original"
-                  className="w-full h-auto max-h-[380px] object-contain"
+                  className="w-full h-auto max-h-[440px] object-contain select-none rounded"
                 />
               </div>
             </div>
@@ -265,21 +251,16 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
             {/* Detections Card */}
             <div className="bg-background-secondary rounded-lg p-2 border border-border">
               <div className="text-[11px] font-semibold text-accent-cyan mb-1.5 flex items-center justify-between">
-                <span>Detections ({result.detections.length} objects)</span>
+                <span>Annotated Detections ({result.detections.length} objects)</span>
                 <span className="text-text-muted font-mono">{result.inference_time_ms} ms</span>
               </div>
-              <DetectionCanvas
-                imageUrl={originalUrl}
-                detections={result.detections}
-                highlightedId={highlightedId}
-                selectedId={selectedId}
-                onSelectDetection={onSelectDetection}
-                activeFilterClass={activeFilterClass}
-                showLabels={showLabels}
-                showConfidence={showConfidence}
-                boxThickness={settings.boxThickness}
-                boxOpacity={settings.boxOpacity}
-              />
+              <div className="bg-black/60 rounded flex items-center justify-center overflow-hidden max-h-[460px] p-1">
+                <img
+                  src={effectiveAnnotatedSrc}
+                  alt="Annotated Detections"
+                  className="w-full h-auto max-h-[440px] object-contain select-none rounded"
+                />
+              </div>
             </div>
           </div>
         )}

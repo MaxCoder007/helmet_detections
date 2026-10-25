@@ -49,10 +49,11 @@ export const DETECTION_CLASSES: Record<DetectionClass, ClassConfig> = {
 };
 
 export const DEFAULT_SETTINGS: AppSettings = {
+  mode: 'debug',
   apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000',
-  confidenceThreshold: Number(import.meta.env.VITE_DEFAULT_CONF) || 0.25,
+  confidenceThreshold: Math.max(0.05, Number(import.meta.env.VITE_DEFAULT_CONF) || 0.25),
   iouThreshold: Number(import.meta.env.VITE_DEFAULT_IOU) || 0.45,
-  imageSize: Number(import.meta.env.VITE_DEFAULT_IMGSZ) || 640,
+  imageSize: Number(import.meta.env.VITE_DEFAULT_IMGSZ) || 1280,
   maxFileSizeMb: Number(import.meta.env.VITE_MAX_FILE_SIZE_MB) || 15,
   demoMode: import.meta.env.VITE_DEMO_MODE === 'true',
   showLabels: true,

@@ -1,0 +1,392 @@
+[
+  {
+    "scenario": "image_1_multi_bike",
+    "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+    "normal_mode": {
+      "retained_detections": 4,
+      "counts": {
+        "helmet": 0,
+        "no_helmet": 2,
+        "number_plate": 2,
+        "pillion": 0,
+        "rider": 0
+      },
+      "detections": [
+        {
+          "class": "no_helmet",
+          "confidence": 0.9251,
+          "bbox": [
+            259.6,
+            68.8,
+            327.3,
+            199.8
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "number_plate",
+          "confidence": 0.8304,
+          "bbox": [
+            185.6,
+            411.4,
+            288.5,
+            450.3
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "number_plate",
+          "confidence": 0.6224,
+          "bbox": [
+            187.1,
+            596.6,
+            467.6,
+            639.2
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "no_helmet",
+          "confidence": 0.2642,
+          "bbox": [
+            371.3,
+            49.8,
+            430.7,
+            162.3
+          ],
+          "quality_status": "high_confidence"
+        }
+      ],
+      "compliance_records": [
+        {
+          "plate": null,
+          "ocr_status": "unreadable",
+          "helmet_status": "not_assessed",
+          "violation": false
+        },
+        {
+          "plate": null,
+          "ocr_status": "unreadable",
+          "helmet_status": "not_assessed",
+          "violation": false
+        }
+      ]
+    },
+    "debug_mode": {
+      "raw_count": 14,
+      "after_duplicate_suppression": 11,
+      "after_conflict_resolution": 10,
+      "suppressed_duplicates_count": 3,
+      "resolved_conflicts_count": 1,
+      "quality_summary": {
+        "high_confidence": 4,
+        "low_confidence": 4,
+        "potential_duplicate": 0,
+        "suspicious_geometry": 2
+      }
+    }
+  },
+  {
+    "scenario": "image_2_single_bike",
+    "filename": "155_jpg.rf.2e013a6fffe773a907edb23a59b1e3a4.jpg",
+    "normal_mode": {
+      "retained_detections": 1,
+      "counts": {
+        "helmet": 0,
+        "no_helmet": 0,
+        "number_plate": 1,
+        "pillion": 0,
+        "rider": 0
+      },
+      "detections": [
+        {
+          "class": "number_plate",
+          "confidence": 0.8527,
+          "bbox": [
+            251.0,
+            334.9,
+            381.3,
+            392.1
+          ],
+          "quality_status": "high_confidence"
+        }
+      ],
+      "compliance_records": [
+        {
+          "plate": "KA45E01893",
+          "ocr_status": "unvalidated",
+          "helmet_status": "not_assessed",
+          "violation": false
+        }
+      ]
+    },
+    "debug_mode": {
+      "raw_count": 33,
+      "after_duplicate_suppression": 30,
+      "after_conflict_resolution": 30,
+      "suppressed_duplicates_count": 3,
+      "resolved_conflicts_count": 0,
+      "quality_summary": {
+        "high_confidence": 1,
+        "low_confidence": 24,
+        "potential_duplicate": 4,
+        "suspicious_geometry": 1
+      }
+    }
+  },
+  {
+    "scenario": "image_3_multi_plates",
+    "filename": "new3_jpg.rf.98fb10ef763d0f0432961aa272f6f57e.jpg",
+    "normal_mode": {
+      "retained_detections": 5,
+      "counts": {
+        "helmet": 0,
+        "no_helmet": 3,
+        "number_plate": 2,
+        "pillion": 0,
+        "rider": 0
+      },
+      "detections": [
+        {
+          "class": "no_helmet",
+          "confidence": 0.8533,
+          "bbox": [
+            333.6,
+            35.2,
+            382.4,
+            141.9
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "no_helmet",
+          "confidence": 0.8434,
+          "bbox": [
+            213.9,
+            10.1,
+            258.9,
+            97.7
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "no_helmet",
+          "confidence": 0.824,
+          "bbox": [
+            261.7,
+            24.7,
+            301.8,
+            106.8
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "number_plate",
+          "confidence": 0.7819,
+          "bbox": [
+            277.4,
+            360.9,
+            327.2,
+            407.9
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "number_plate",
+          "confidence": 0.364,
+          "bbox": [
+            150.0,
+            316.1,
+            212.3,
+            339.0
+          ],
+          "quality_status": "high_confidence"
+        }
+      ],
+      "compliance_records": [
+        {
+          "plate": null,
+          "ocr_status": "unreadable",
+          "helmet_status": "not_assessed",
+          "violation": false
+        },
+        {
+          "plate": null,
+          "ocr_status": "unreadable",
+          "helmet_status": "not_assessed",
+          "violation": false
+        }
+      ]
+    },
+    "debug_mode": {
+      "raw_count": 13,
+      "after_duplicate_suppression": 12,
+      "after_conflict_resolution": 11,
+      "suppressed_duplicates_count": 1,
+      "resolved_conflicts_count": 1,
+      "quality_summary": {
+        "high_confidence": 5,
+        "low_confidence": 5,
+        "potential_duplicate": 0,
+        "suspicious_geometry": 1
+      }
+    }
+  },
+  {
+    "scenario": "image_4_helmeted",
+    "filename": "IMG_0533_JPG.rf.71c0ee72cc517a949056e85645299a3a.jpg",
+    "normal_mode": {
+      "retained_detections": 5,
+      "counts": {
+        "helmet": 1,
+        "no_helmet": 2,
+        "number_plate": 0,
+        "pillion": 1,
+        "rider": 1
+      },
+      "detections": [
+        {
+          "class": "rider",
+          "confidence": 0.8784,
+          "bbox": [
+            1100.5,
+            801.1,
+            1449.9,
+            1310.7
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "helmet",
+          "confidence": 0.7688,
+          "bbox": [
+            1202.4,
+            806.5,
+            1305.6,
+            910.5
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "no_helmet",
+          "confidence": 0.6278,
+          "bbox": [
+            2881.3,
+            782.1,
+            2995.1,
+            913.3
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "no_helmet",
+          "confidence": 0.6272,
+          "bbox": [
+            2997.7,
+            743.8,
+            3110.3,
+            875.2
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "pillion",
+          "confidence": 0.26,
+          "bbox": [
+            2861.3,
+            746.6,
+            3142.0,
+            1473.3
+          ],
+          "quality_status": "high_confidence"
+        }
+      ],
+      "compliance_records": [
+        {
+          "plate": null,
+          "ocr_status": "no_plate",
+          "helmet_status": "helmet_detected",
+          "violation": false
+        },
+        {
+          "plate": null,
+          "ocr_status": "no_plate",
+          "helmet_status": "no_helmet_detected",
+          "violation": false
+        }
+      ]
+    },
+    "debug_mode": {
+      "raw_count": 9,
+      "after_duplicate_suppression": 9,
+      "after_conflict_resolution": 8,
+      "suppressed_duplicates_count": 0,
+      "resolved_conflicts_count": 1,
+      "quality_summary": {
+        "high_confidence": 5,
+        "low_confidence": 3,
+        "potential_duplicate": 0,
+        "suspicious_geometry": 0
+      }
+    }
+  },
+  {
+    "scenario": "image_5_unhelmeted",
+    "filename": "train-no-helmet-374-_jpg.rf.e4e768d53dbbb008832f00979e481281.jpg",
+    "normal_mode": {
+      "retained_detections": 2,
+      "counts": {
+        "helmet": 0,
+        "no_helmet": 1,
+        "number_plate": 0,
+        "pillion": 0,
+        "rider": 1
+      },
+      "detections": [
+        {
+          "class": "rider",
+          "confidence": 0.7194,
+          "bbox": [
+            224.7,
+            81.6,
+            439.8,
+            391.5
+          ],
+          "quality_status": "high_confidence"
+        },
+        {
+          "class": "no_helmet",
+          "confidence": 0.5156,
+          "bbox": [
+            344.2,
+            81.1,
+            401.5,
+            142.0
+          ],
+          "quality_status": "high_confidence"
+        }
+      ],
+      "compliance_records": [
+        {
+          "plate": null,
+          "ocr_status": "no_plate",
+          "helmet_status": "no_helmet_detected",
+          "violation": false
+        }
+      ]
+    },
+    "debug_mode": {
+      "raw_count": 21,
+      "after_duplicate_suppression": 16,
+      "after_conflict_resolution": 16,
+      "suppressed_duplicates_count": 5,
+      "resolved_conflicts_count": 0,
+      "quality_summary": {
+        "high_confidence": 1,
+        "low_confidence": 10,
+        "potential_duplicate": 2,
+        "suspicious_geometry": 3
+      }
+    }
+  }
+]

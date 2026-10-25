@@ -9,21 +9,21 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: '#09090B',
-          secondary: '#111114',
-          card: '#18181B',
-          hover: '#222226',
-          muted: '#141417',
+          DEFAULT: '#0F1115',
+          secondary: '#14171D',
+          card: '#181B21',
+          hover: '#22262E',
+          muted: '#1E222A',
         },
         border: {
-          DEFAULT: '#27272A',
-          subtle: '#1E1E22',
-          active: '#3F3F46',
+          DEFAULT: '#2A303A',
+          subtle: '#222730',
+          active: '#3D4554',
         },
         text: {
-          primary: '#FAFAFA',
-          secondary: '#A1A1AA',
-          muted: '#71717A',
+          primary: '#F5F7FA',
+          secondary: '#A6AFBD',
+          muted: '#6E7684',
         },
         accent: {
           cyan: '#8BE8FF',
@@ -51,34 +51,20 @@ export default {
           'BlinkMacSystemFont',
           'Segoe UI',
           'Roboto',
-          'Oxygen',
-          'Ubuntu',
-          'Cantarell',
           'sans-serif',
         ],
         mono: [
           'JetBrains Mono',
-          'Fira Code',
           'Consolas',
           'Monaco',
           'monospace',
         ],
       },
       boxShadow: {
-        'glow-cyan': '0 0 20px -5px rgba(139, 232, 255, 0.35)',
-        'glow-pink': '0 0 20px -5px rgba(240, 171, 252, 0.35)',
-        'card': '0 4px 20px rgba(0, 0, 0, 0.4)',
+        'glow-cyan': '0 0 16px -4px rgba(139, 232, 255, 0.3)',
+        'glow-pink': '0 0 16px -4px rgba(240, 171, 252, 0.3)',
+        'card': '0 2px 12px rgba(0, 0, 0, 0.25)',
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'scanline': 'scanline 2s linear infinite',
-      },
-      keyframes: {
-        scanline: {
-          '0%': { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(1000%)' },
-        }
-      }
     },
   },
   plugins: [],

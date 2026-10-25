@@ -32,7 +32,23 @@ export function drawDetectionsOnCanvas(
     activeFilterClass = 'all',
   } = options;
 
-  detections.forEach((detection) => {
+  // Sort detections so larger boxes are rendered first and smaller, tighter boxes
+  // (such as number plates and helmets) are drawn on top. Highlighted box is drawn last.
+  const sortedDetections = [...detections].sort((a, b) => {
+    const isAHighlighted = a.id === highlightedId || a.id === selectedId;
+    const isBHighlighted = b.id === highlightedId || b.id === selectedId;
+    if (isAHighlighted && !isBHighlighted) return 1;
+    if (!isAHighlighted && isBHighlighted) return -1;
+
+    const areaA = Math.max(0, a.bbox[2] - a.bbox[0]) * Math.max(0, a.bbox[3] - a.bbox[1]);
+    const areaB = Math.max(0, b.bbox[2] - b.bbox[0]) * Math.max(0, b.bbox[3] - b.bbox[1]);
+    return areaB - areaA;
+  });
+
+  // Track occupied tag rectangles to prevent overlapping labels from obscuring each other
+  const occupiedTagRects: Array<{ x: number; y: number; w: number; h: number }> = [];
+
+  sortedDetections.forEach((detection) => {
     // Check if filtered out
     if (activeFilterClass !== 'all' && detection.class_name !== activeFilterClass) {
       return;
@@ -92,15 +108,38 @@ export function drawDetectionsOnCanvas(
       // Position tag above box, or inside if near top
       let tagY = y1 - tagHeight;
       if (tagY < 0) {
-        tagY = y1;
+        tagY = y1 + 2;
       }
-      const tagX = Math.min(x1, Math.max(0, imageWidth - tagWidth));
+      let tagX = Math.min(x1, Math.max(0, imageWidth - tagWidth));
+
+      // Collision avoidance with previously drawn tags so labels don't obscure each other
+      let attempts = 0;
+      while (
+        attempts < 4 &&
+        occupiedTagRects.some(
+          (r) =>
+            tagX < r.x + r.w &&
+            tagX + tagWidth > r.x &&
+            tagY < r.y + r.h &&
+            tagY + tagHeight > r.y
+        )
+      ) {
+        attempts++;
+        if (attempts === 1) {
+          tagY = y1 + 3; // Place inside top of box
+        } else if (attempts === 2) {
+          tagY = Math.max(0, y2 - tagHeight - 3); // Place inside bottom of box
+        } else if (attempts === 3) {
+          tagX = Math.min(Math.max(0, x2 - tagWidth), Math.max(0, imageWidth - tagWidth)); // Shift right
+        }
+      }
+      occupiedTagRects.push({ x: tagX, y: tagY, w: tagWidth, h: tagHeight });
 
       // Tag Background
       ctx.globalAlpha = 0.95;
       ctx.fillStyle = classConfig.color;
       ctx.beginPath();
-      // Round top corners or entire pill
+      // Round corners or rect
       ctx.roundRect ? ctx.roundRect(tagX, tagY, tagWidth, tagHeight, 4) : ctx.rect(tagX, tagY, tagWidth, tagHeight);
       ctx.fill();
 

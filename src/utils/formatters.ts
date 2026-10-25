@@ -17,7 +17,14 @@ export function formatFileSize(bytes: number): string {
 export function formatConfidence(conf: number): string {
   if (isNaN(conf)) return '0.0%';
   const clamped = Math.max(0, Math.min(1, conf));
-  return `${(clamped * 100).toFixed(1)}%`;
+  const pct = clamped * 100;
+  if (pct < 0.01 && pct > 0) {
+    return `${pct.toFixed(3)}%`;
+  }
+  if (pct < 1 && pct > 0) {
+    return `${pct.toFixed(2)}%`;
+  }
+  return `${pct.toFixed(1)}%`;
 }
 
 /**
@@ -31,14 +38,16 @@ export function formatBBox(bbox: [number, number, number, number]): string {
 /**
  * Format timestamp into readable time string
  */
-export function formatTime(timestamp: number): string {
+export function formatTime(timestamp: number | string): string {
+  const dateObj = typeof timestamp === 'string' ? new Date(timestamp) : new Date(timestamp);
+  if (isNaN(dateObj.getTime())) return String(timestamp);
   return new Intl.DateTimeFormat('en-US', {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
     month: 'short',
     day: 'numeric',
-  }).format(new Date(timestamp));
+  }).format(dateObj);
 }
 
 /**

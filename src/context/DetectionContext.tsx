@@ -42,15 +42,30 @@ interface DetectionContextType {
 
 const DetectionContext = createContext<DetectionContextType | undefined>(undefined);
 
-const SETTINGS_STORAGE_KEY = 'roadvision_settings';
+const SETTINGS_STORAGE_KEY = 'roadvision_settings_v5';
 
 export const DetectionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Load settings from localStorage if available
   const [settings, setSettings] = useState<AppSettings>(() => {
     try {
+      // Purge obsolete settings keys from older releases to prevent stale defaults
+      localStorage.removeItem('roadvision_settings');
+      localStorage.removeItem('roadvision_settings_v2');
+      localStorage.removeItem('roadvision_settings_v3');
+      localStorage.removeItem('roadvision_settings_v4');
+
       const stored = localStorage.getItem(SETTINGS_STORAGE_KEY);
       if (stored) {
-        return { ...DEFAULT_SETTINGS, ...JSON.parse(stored) };
+        const parsed = JSON.parse(stored);
+        return {
+          ...DEFAULT_SETTINGS,
+          ...parsed,
+          confidenceThreshold: typeof parsed.confidenceThreshold === 'number'
+            ? Math.max(0.05, Math.min(1.0, parsed.confidenceThreshold))
+            : DEFAULT_SETTINGS.confidenceThreshold,
+          imageSize: typeof parsed.imageSize === 'number' ? parsed.imageSize : DEFAULT_SETTINGS.imageSize,
+          iouThreshold: typeof parsed.iouThreshold === 'number' ? parsed.iouThreshold : DEFAULT_SETTINGS.iouThreshold,
+        };
       }
     } catch {
       // Ignore storage errors
@@ -95,7 +110,11 @@ export const DetectionProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // Update Settings
   const updateSettings = (newSettings: Partial<AppSettings>) => {
     setSettings((prev) => {
-      const updated = { ...prev, ...newSettings };
+      const sanitized = { ...newSettings };
+      if (typeof sanitized.confidenceThreshold === 'number') {
+        sanitized.confidenceThreshold = Math.max(0.05, Math.min(1.0, sanitized.confidenceThreshold));
+      }
+      const updated = { ...prev, ...sanitized };
       try {
         localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(updated));
       } catch {
@@ -187,6 +206,7 @@ export const DetectionProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       } else {
         // Real API Inference
         result = await runInference(settings.apiBaseUrl, activeFile, {
+          mode: settings.mode,
           conf: settings.confidenceThreshold,
           iou: settings.iouThreshold,
           imgsz: settings.imageSize,
@@ -205,6 +225,8 @@ export const DetectionProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         fileSize: activeFile.size,
         originalImageUrl: activePreviewUrl,
         result,
+        analysisType: 'image',
+        records: result.records,
       };
 
       setHistory((prev) => [historyRecord, ...prev]);

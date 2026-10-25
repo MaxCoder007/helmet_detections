@@ -1,0 +1,171 @@
+{
+  "readable_plates": 12,
+  "exact_matches": 3,
+  "exact_match_accuracy_pct": 25.0,
+  "mean_cer": 0.2465,
+  "ocr_coverage_pct": 100.0,
+  "average_latency_ms": 416.72,
+  "details": [
+    {
+      "id": "plate_01_clear_two_line",
+      "category": "clear_two_line",
+      "ground_truth": "KA04HF8744",
+      "ocr_output": "KA04HF8744",
+      "confidence": 0.911,
+      "format_valid": true,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 530.85,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_02_two_line_clean",
+      "category": "clear_two_line",
+      "ground_truth": "KA04JD5128",
+      "ocr_output": "KA04JD5128",
+      "confidence": 0.9643,
+      "format_valid": true,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 426.35,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_04_punjab_two_line",
+      "category": "clear_two_line",
+      "ground_truth": "PB13AY4141",
+      "ocr_output": "PB13444141",
+      "confidence": 0.4959,
+      "format_valid": false,
+      "exact_match": false,
+      "cer": 0.2,
+      "latency_ms": 973.83,
+      "variant": "sharpen"
+    },
+    {
+      "id": "plate_05_karnataka_confusion",
+      "category": "character_confusion",
+      "ground_truth": "KA09HM3422",
+      "ocr_output": "KA09H3422",
+      "confidence": 0.7903,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.1,
+      "latency_ms": 385.7,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_06_telangana_split",
+      "category": "two_line_split_columns",
+      "ground_truth": "TS07EJ7736",
+      "ocr_output": "TS357936",
+      "confidence": 0.8013,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.5,
+      "latency_ms": 402.66,
+      "variant": "sharpen"
+    },
+    {
+      "id": "plate_07_maharashtra_tilted",
+      "category": "tilted_two_line",
+      "ground_truth": "MH08AT300",
+      "ocr_output": "MH48AT300",
+      "confidence": 0.6769,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.1111,
+      "latency_ms": 529.54,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_08_karnataka_ind_tag",
+      "category": "dealer_tag_noise",
+      "ground_truth": "KA02HK3787",
+      "ocr_output": "CK42HK3787",
+      "confidence": 0.4708,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.3,
+      "latency_ms": 344.72,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_09_uttar_pradesh",
+      "category": "moderate_blur",
+      "ground_truth": "UP35T1399",
+      "ocr_output": "UP35121399",
+      "confidence": 0.4202,
+      "format_valid": false,
+      "exact_match": false,
+      "cer": 0.2222,
+      "latency_ms": 345.22,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_10_tamil_nadu_crowded",
+      "category": "crowded_scene",
+      "ground_truth": "TN05AR3709",
+      "ocr_output": "AS479709",
+      "confidence": 0.0835,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.7,
+      "latency_ms": 258.18,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_11_delhi_clear",
+      "category": "clear_single_line_variant",
+      "ground_truth": "KA04JD5128",
+      "ocr_output": "KA04JD5128",
+      "confidence": 0.9643,
+      "format_valid": true,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 404.61,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_12_degraded_unreadable",
+      "category": "unreadable_blurry",
+      "ground_truth": null,
+      "ocr_output": null,
+      "exact_match": true,
+      "cer": 0.0,
+      "latency_ms": 137.59
+    },
+    {
+      "id": "plate_13_small_distant",
+      "category": "small_distant",
+      "ground_truth": "KA547916",
+      "ocr_output": "KA541916",
+      "confidence": 0.9931,
+      "format_valid": true,
+      "exact_match": false,
+      "cer": 0.125,
+      "latency_ms": 311.98,
+      "variant": "sharpen"
+    },
+    {
+      "id": "plate_14_low_contrast_shadow",
+      "category": "low_contrast_shadow",
+      "ground_truth": "TS08EJ8880",
+      "ocr_output": "LJTOJNE888",
+      "confidence": 0.5581,
+      "format_valid": false,
+      "exact_match": false,
+      "cer": 0.7,
+      "latency_ms": 366.14,
+      "variant": "clahe"
+    },
+    {
+      "id": "plate_15_no_plate_scene",
+      "ground_truth": null,
+      "ocr_output": null,
+      "exact_match": true,
+      "cer": 0.0,
+      "category": "zero_plates_negative"
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "source": "Path A: Jupyter Notebook",
+  "image": {
+    "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+    "width": 640,
+    "height": 640,
+    "sha256": "d7b10dbfa8a477a68bb566a08df04b01cf5c9592423fdd3bfcce6d636155a32f"
+  },
+  "model": {
+    "checkpoint_path": "G:\\My Drive\\helmet-number-plate-detection\\models\\best.pt",
+    "sha256": "804aa5e8c5b4e56df7eca9d18a7f6bdb9e1ab87dc30203f8fdf1578429a344ef",
+    "classes": {
+      "0": "helmet",
+      "1": "no_helmet",
+      "2": "number_plate",
+      "3": "pillion",
+      "4": "rider"
+    }
+  },
+  "parameters": {
+    "conf": 0.001,
+    "iou": 0.7,
+    "imgsz": 1280,
+    "max_det": 300,
+    "device": "cpu"
+  },
+  "total_detections": 17,
+  "class_counts": {
+    "helmet": 1,
+    "no_helmet": 6,
+    "number_plate": 8,
+    "pillion": 0,
+    "rider": 2
+  },
+  "detections": [
+    {
+      "index": 0,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.9251,
+      "bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ],
+      "width": 67.7,
+      "height": 130.9,
+      "area": 8864.6
+    },
+    {
+      "index": 1,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.8304,
+      "bbox": [
+        185.6,
+        411.4,
+        288.5,
+        450.3
+      ],
+      "width": 102.9,
+      "height": 38.8,
+      "area": 3993.7
+    },
+    {
+      "index": 2,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.6224,
+      "bbox": [
+        187.1,
+        596.6,
+        467.6,
+        639.2
+      ],
+      "width": 280.5,
+      "height": 42.6,
+      "area": 11952.1
+    },
+    {
+      "index": 3,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.2642,
+      "bbox": [
+        371.3,
+        49.8,
+        430.7,
+        162.3
+      ],
+      "width": 59.4,
+      "height": 112.6,
+      "area": 6689.4
+    },
+    {
+      "index": 4,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.1824,
+      "bbox": [
+        372.8,
+        78.6,
+        429.6,
+        158.8
+      ],
+      "width": 56.8,
+      "height": 80.3,
+      "area": 4557.5
+    },
+    {
+      "index": 5,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0882,
+      "bbox": [
+        183.5,
+        598.0,
+        353.2,
+        639.8
+      ],
+      "width": 169.7,
+      "height": 41.8,
+      "area": 7097.0
+    },
+    {
+      "index": 6,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0615,
+      "bbox": [
+        0.0,
+        0.2,
+        300.3,
+        285.4
+      ],
+      "width": 300.3,
+      "height": 285.3,
+      "area": 85677.5
+    },
+    {
+      "index": 7,
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.0505,
+      "bbox": [
+        370.8,
+        50.6,
+        430.8,
+        161.0
+      ],
+      "width": 60.0,
+      "height": 110.3,
+      "area": 6622.3
+    },
+    {
+      "index": 8,
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0146,
+      "bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ],
+      "width": 298.0,
+      "height": 307.5,
+      "area": 91653.4
+    },
+    {
+      "index": 9,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0141,
+      "bbox": [
+        286.3,
+        594.9,
+        567.1,
+        639.4
+      ],
+      "width": 280.8,
+      "height": 44.5,
+      "area": 12497.2
+    },
+    {
+      "index": 10,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0132,
+      "bbox": [
+        0.0,
+        0.0,
+        306.8,
+        193.7
+      ],
+      "width": 306.8,
+      "height": 193.7,
+      "area": 59426.2
+    },
+    {
+      "index": 11,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0032,
+      "bbox": [
+        268.9,
+        121.6,
+        324.6,
+        200.8
+      ],
+      "width": 55.7,
+      "height": 79.2,
+      "area": 4408.1
+    },
+    {
+      "index": 12,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0015,
+      "bbox": [
+        334.8,
+        340.2,
+        382.8,
+        364.6
+      ],
+      "width": 47.9,
+      "height": 24.4,
+      "area": 1171.2
+    },
+    {
+      "index": 13,
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0014,
+      "bbox": [
+        495.7,
+        487.4,
+        639.1,
+        586.9
+      ],
+      "width": 143.4,
+      "height": 99.4,
+      "area": 14256.9
+    },
+    {
+      "index": 14,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0013,
+      "bbox": [
+        618.7,
+        353.6,
+        640.0,
+        415.3
+      ],
+      "width": 21.3,
+      "height": 61.7,
+      "area": 1315.7
+    },
+    {
+      "index": 15,
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0012,
+      "bbox": [
+        610.2,
+        400.9,
+        640.0,
+        506.6
+      ],
+      "width": 29.8,
+      "height": 105.7,
+      "area": 3146.5
+    },
+    {
+      "index": 16,
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0011,
+      "bbox": [
+        65.5,
+        597.8,
+        341.7,
+        639.7
+      ],
+      "width": 276.2,
+      "height": 42.0,
+      "area": 11593.2
+    }
+  ]
+}

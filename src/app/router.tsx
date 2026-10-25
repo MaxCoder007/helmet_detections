@@ -3,9 +3,9 @@ import { AppLayout } from '@/components/layout/AppLayout';
 import { OverviewPage } from '@/pages/OverviewPage';
 import { ImageDetectionPage } from '@/pages/ImageDetectionPage';
 import { VideoAnalysisPage } from '@/pages/VideoAnalysisPage';
+import { LiveVideoPage } from '@/pages/LiveVideoPage';
 import { HistoryPage } from '@/pages/HistoryPage';
-import { ModelInfoPage } from '@/pages/ModelInfoPage';
-import { SettingsPage } from '@/pages/SettingsPage';
+import { ViolationsPage } from '@/pages/ViolationsPage';
 
 export const router = createBrowserRouter([
   {
@@ -17,24 +17,36 @@ export const router = createBrowserRouter([
         element: <OverviewPage />,
       },
       {
-        path: 'detect',
+        path: 'image-analysis',
         element: <ImageDetectionPage />,
       },
       {
-        path: 'video',
+        path: 'detect',
+        element: <Navigate to="/image-analysis" replace />,
+      },
+      {
+        path: 'video-analysis',
         element: <VideoAnalysisPage />,
+      },
+      {
+        path: 'video',
+        element: <Navigate to="/video-analysis" replace />,
+      },
+      {
+        path: 'live-analysis',
+        element: <LiveVideoPage />,
+      },
+      {
+        path: 'live-video',
+        element: <Navigate to="/live-analysis" replace />,
       },
       {
         path: 'history',
         element: <HistoryPage />,
       },
       {
-        path: 'model-info',
-        element: <ModelInfoPage />,
-      },
-      {
-        path: 'settings',
-        element: <SettingsPage />,
+        path: 'violations',
+        element: <ViolationsPage />,
       },
       {
         path: '*',

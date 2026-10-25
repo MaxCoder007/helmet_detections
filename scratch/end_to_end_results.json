@@ -1,0 +1,780 @@
+[
+  {
+    "scenario": "Scenario 1: Single unhelmeted rider",
+    "filename": "train-no-helmet-374-_jpg.rf.e4e768d53dbbb008832f00979e481281.jpg",
+    "raw_yolo_nms": 21,
+    "after_same_class_dup": 16,
+    "after_conflict_res": 14,
+    "api_response_count": 14,
+    "frontend_render_count": 14,
+    "unique_headwear_count": 9,
+    "helmets": 2,
+    "no_helmets": 7,
+    "riders": 5,
+    "plates": 0,
+    "distinct_riders_merged": false,
+    "duplicate_headwear_remains": false,
+    "suppressed_dups_count": 5,
+    "resolved_conflicts_count": 2,
+    "annotated_url": "/results/annotated_7c67754696.jpg",
+    "detections": [
+      {
+        "id": "det_0",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.7194,
+        "bbox": [
+          224.7,
+          81.6,
+          439.8,
+          391.5
+        ]
+      },
+      {
+        "id": "det_1",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.5156,
+        "bbox": [
+          344.2,
+          81.1,
+          401.5,
+          142.0
+        ]
+      },
+      {
+        "id": "det_2",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0274,
+        "bbox": [
+          629.5,
+          0.0,
+          640.0,
+          47.9
+        ],
+        "is_uncertain": true,
+        "uncertainty_reason": "Close opposing prediction (helmet conf 0.4% vs no_helmet 2.7%)"
+      },
+      {
+        "id": "det_3",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0143,
+        "bbox": [
+          39.3,
+          297.1,
+          213.1,
+          405.3
+        ]
+      },
+      {
+        "id": "det_5",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0065,
+        "bbox": [
+          0.0,
+          415.0,
+          43.9,
+          459.1
+        ]
+      },
+      {
+        "id": "det_6",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0061,
+        "bbox": [
+          0.0,
+          510.1,
+          81.3,
+          611.3
+        ]
+      },
+      {
+        "id": "det_8",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0042,
+        "bbox": [
+          584.1,
+          552.1,
+          640.0,
+          640.0
+        ]
+      },
+      {
+        "id": "det_12",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0029,
+        "bbox": [
+          185.2,
+          0.0,
+          470.1,
+          194.5
+        ]
+      },
+      {
+        "id": "det_13",
+        "class_id": 0,
+        "class_name": "helmet",
+        "confidence": 0.0025,
+        "bbox": [
+          219.5,
+          313.2,
+          316.5,
+          426.0
+        ]
+      },
+      {
+        "id": "det_14",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0019,
+        "bbox": [
+          316.5,
+          332.4,
+          597.5,
+          639.6
+        ]
+      },
+      {
+        "id": "det_15",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0017,
+        "bbox": [
+          370.5,
+          564.9,
+          503.7,
+          639.8
+        ]
+      },
+      {
+        "id": "det_16",
+        "class_id": 0,
+        "class_name": "helmet",
+        "confidence": 0.0015,
+        "bbox": [
+          311.5,
+          0.0,
+          373.2,
+          13.8
+        ]
+      },
+      {
+        "id": "det_17",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0014,
+        "bbox": [
+          494.1,
+          0.0,
+          639.7,
+          276.9
+        ]
+      },
+      {
+        "id": "det_19",
+        "class_id": 3,
+        "class_name": "pillion",
+        "confidence": 0.0014,
+        "bbox": [
+          317.6,
+          81.5,
+          442.1,
+          364.2
+        ]
+      }
+    ]
+  },
+  {
+    "scenario": "Scenario 2: Single helmeted rider",
+    "filename": "IMG_0533_JPG.rf.71c0ee72cc517a949056e85645299a3a.jpg",
+    "raw_yolo_nms": 9,
+    "after_same_class_dup": 9,
+    "after_conflict_res": 8,
+    "api_response_count": 8,
+    "frontend_render_count": 8,
+    "unique_headwear_count": 4,
+    "helmets": 1,
+    "no_helmets": 3,
+    "riders": 4,
+    "plates": 0,
+    "distinct_riders_merged": false,
+    "duplicate_headwear_remains": false,
+    "suppressed_dups_count": 0,
+    "resolved_conflicts_count": 1,
+    "annotated_url": "/results/annotated_82625b2d28.jpg",
+    "detections": [
+      {
+        "id": "det_0",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.8784,
+        "bbox": [
+          1100.5,
+          801.1,
+          1449.9,
+          1310.7
+        ]
+      },
+      {
+        "id": "det_1",
+        "class_id": 0,
+        "class_name": "helmet",
+        "confidence": 0.7688,
+        "bbox": [
+          1202.4,
+          806.5,
+          1305.6,
+          910.5
+        ]
+      },
+      {
+        "id": "det_2",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.6278,
+        "bbox": [
+          2881.3,
+          782.1,
+          2995.1,
+          913.3
+        ]
+      },
+      {
+        "id": "det_3",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.6272,
+        "bbox": [
+          2997.7,
+          743.8,
+          3110.3,
+          875.2
+        ]
+      },
+      {
+        "id": "det_4",
+        "class_id": 3,
+        "class_name": "pillion",
+        "confidence": 0.26,
+        "bbox": [
+          2861.3,
+          746.6,
+          3142.0,
+          1473.3
+        ]
+      },
+      {
+        "id": "det_5",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.1249,
+        "bbox": [
+          2860.5,
+          756.2,
+          3138.0,
+          1461.9
+        ]
+      },
+      {
+        "id": "det_6",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0019,
+        "bbox": [
+          302.9,
+          738.5,
+          432.5,
+          1017.4
+        ]
+      },
+      {
+        "id": "det_8",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0012,
+        "bbox": [
+          304.2,
+          739.1,
+          432.7,
+          1016.3
+        ]
+      }
+    ]
+  },
+  {
+    "scenario": "Scenario 3: Multiple riders in same image",
+    "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+    "raw_yolo_nms": 14,
+    "after_same_class_dup": 11,
+    "after_conflict_res": 10,
+    "api_response_count": 10,
+    "frontend_render_count": 10,
+    "unique_headwear_count": 4,
+    "helmets": 0,
+    "no_helmets": 4,
+    "riders": 2,
+    "plates": 4,
+    "distinct_riders_merged": false,
+    "duplicate_headwear_remains": false,
+    "suppressed_dups_count": 3,
+    "resolved_conflicts_count": 1,
+    "annotated_url": "/results/annotated_bda8c202a7.jpg",
+    "detections": [
+      {
+        "id": "det_0",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.9251,
+        "bbox": [
+          259.6,
+          68.8,
+          327.3,
+          199.8
+        ]
+      },
+      {
+        "id": "det_1",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.8304,
+        "bbox": [
+          185.6,
+          411.4,
+          288.5,
+          450.3
+        ]
+      },
+      {
+        "id": "det_2",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.6224,
+        "bbox": [
+          187.1,
+          596.6,
+          467.6,
+          639.2
+        ]
+      },
+      {
+        "id": "det_3",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.2642,
+        "bbox": [
+          371.3,
+          49.8,
+          430.7,
+          162.3
+        ]
+      },
+      {
+        "id": "det_4",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.0615,
+        "bbox": [
+          0.0,
+          0.2,
+          300.3,
+          285.4
+        ]
+      },
+      {
+        "id": "det_6",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0146,
+        "bbox": [
+          0.0,
+          15.3,
+          298.0,
+          322.8
+        ]
+      },
+      {
+        "id": "det_9",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.0015,
+        "bbox": [
+          334.8,
+          340.2,
+          382.8,
+          364.6
+        ]
+      },
+      {
+        "id": "det_10",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0014,
+        "bbox": [
+          495.7,
+          487.4,
+          639.1,
+          586.9
+        ]
+      },
+      {
+        "id": "det_11",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0013,
+        "bbox": [
+          618.7,
+          353.6,
+          640.0,
+          415.3
+        ]
+      },
+      {
+        "id": "det_12",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0012,
+        "bbox": [
+          610.2,
+          400.9,
+          640.0,
+          506.6
+        ]
+      }
+    ]
+  },
+  {
+    "scenario": "Scenario 4: Two riders close together",
+    "filename": "BikesHelmets248_png.rf.7a098f0ed08009df88b31909fbe8b621.jpg",
+    "raw_yolo_nms": 4,
+    "after_same_class_dup": 4,
+    "after_conflict_res": 4,
+    "api_response_count": 4,
+    "frontend_render_count": 4,
+    "unique_headwear_count": 3,
+    "helmets": 0,
+    "no_helmets": 3,
+    "riders": 1,
+    "plates": 0,
+    "distinct_riders_merged": false,
+    "duplicate_headwear_remains": false,
+    "suppressed_dups_count": 0,
+    "resolved_conflicts_count": 0,
+    "annotated_url": "/results/annotated_ae214adb9d.jpg",
+    "detections": [
+      {
+        "id": "det_0",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.6258,
+        "bbox": [
+          167.6,
+          0.8,
+          212.3,
+          48.4
+        ]
+      },
+      {
+        "id": "det_1",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.458,
+        "bbox": [
+          127.2,
+          8.6,
+          248.7,
+          214.4
+        ]
+      },
+      {
+        "id": "det_2",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0028,
+        "bbox": [
+          313.2,
+          23.1,
+          389.6,
+          111.5
+        ]
+      },
+      {
+        "id": "det_3",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0017,
+        "bbox": [
+          96.6,
+          56.0,
+          139.4,
+          87.8
+        ]
+      }
+    ]
+  },
+  {
+    "scenario": "Scenario 5: Crowded traffic scene",
+    "filename": "IMG_3142_JPG.rf.dc1259582bba1d89dc472e767a198ab8.jpg",
+    "raw_yolo_nms": 9,
+    "after_same_class_dup": 8,
+    "after_conflict_res": 7,
+    "api_response_count": 7,
+    "frontend_render_count": 7,
+    "unique_headwear_count": 4,
+    "helmets": 2,
+    "no_helmets": 2,
+    "riders": 3,
+    "plates": 0,
+    "distinct_riders_merged": false,
+    "duplicate_headwear_remains": false,
+    "suppressed_dups_count": 1,
+    "resolved_conflicts_count": 1,
+    "annotated_url": "/results/annotated_656bbf6ab4.jpg",
+    "detections": [
+      {
+        "id": "det_0",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.8818,
+        "bbox": [
+          409.6,
+          779.5,
+          607.1,
+          1121.5
+        ]
+      },
+      {
+        "id": "det_1",
+        "class_id": 3,
+        "class_name": "pillion",
+        "confidence": 0.8584,
+        "bbox": [
+          2216.5,
+          732.8,
+          2492.1,
+          1593.1
+        ]
+      },
+      {
+        "id": "det_2",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.7987,
+        "bbox": [
+          2433.7,
+          715.1,
+          3168.9,
+          1806.1
+        ]
+      },
+      {
+        "id": "det_3",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.7266,
+        "bbox": [
+          2512.7,
+          724.0,
+          2690.7,
+          918.4
+        ]
+      },
+      {
+        "id": "det_4",
+        "class_id": 0,
+        "class_name": "helmet",
+        "confidence": 0.6757,
+        "bbox": [
+          2300.9,
+          736.3,
+          2477.6,
+          913.1
+        ]
+      },
+      {
+        "id": "det_5",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.3587,
+        "bbox": [
+          480.9,
+          783.6,
+          564.6,
+          863.5
+        ]
+      },
+      {
+        "id": "det_8",
+        "class_id": 0,
+        "class_name": "helmet",
+        "confidence": 0.0018,
+        "bbox": [
+          2850.2,
+          1085.6,
+          2968.2,
+          1163.3
+        ]
+      }
+    ]
+  },
+  {
+    "scenario": "Scenario 6: Multiple visible number plates",
+    "filename": "new3_jpg.rf.98fb10ef763d0f0432961aa272f6f57e.jpg",
+    "raw_yolo_nms": 13,
+    "after_same_class_dup": 12,
+    "after_conflict_res": 11,
+    "api_response_count": 11,
+    "frontend_render_count": 11,
+    "unique_headwear_count": 7,
+    "helmets": 0,
+    "no_helmets": 7,
+    "riders": 1,
+    "plates": 3,
+    "distinct_riders_merged": false,
+    "duplicate_headwear_remains": false,
+    "suppressed_dups_count": 1,
+    "resolved_conflicts_count": 1,
+    "annotated_url": "/results/annotated_24f5176f2a.jpg",
+    "detections": [
+      {
+        "id": "det_0",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.8533,
+        "bbox": [
+          333.6,
+          35.2,
+          382.4,
+          141.9
+        ]
+      },
+      {
+        "id": "det_1",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.8434,
+        "bbox": [
+          213.9,
+          10.1,
+          258.9,
+          97.7
+        ]
+      },
+      {
+        "id": "det_2",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.824,
+        "bbox": [
+          261.7,
+          24.7,
+          301.8,
+          106.8
+        ]
+      },
+      {
+        "id": "det_3",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.7819,
+        "bbox": [
+          277.4,
+          360.9,
+          327.2,
+          407.9
+        ]
+      },
+      {
+        "id": "det_4",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.364,
+        "bbox": [
+          150.0,
+          316.1,
+          212.3,
+          339.0
+        ]
+      },
+      {
+        "id": "det_5",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0238,
+        "bbox": [
+          44.6,
+          0.0,
+          100.6,
+          19.6
+        ],
+        "is_uncertain": true,
+        "uncertainty_reason": "Close opposing prediction (helmet conf 0.2% vs no_helmet 2.4%)"
+      },
+      {
+        "id": "det_6",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.006,
+        "bbox": [
+          182.7,
+          33.3,
+          206.3,
+          83.1
+        ]
+      },
+      {
+        "id": "det_7",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0054,
+        "bbox": [
+          0.1,
+          74.6,
+          188.4,
+          374.2
+        ]
+      },
+      {
+        "id": "det_10",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.0019,
+        "bbox": [
+          1.5,
+          77.0,
+          199.9,
+          220.6
+        ]
+      },
+      {
+        "id": "det_11",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0018,
+        "bbox": [
+          394.3,
+          359.7,
+          446.5,
+          471.3
+        ]
+      },
+      {
+        "id": "det_12",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0015,
+        "bbox": [
+          359.7,
+          277.6,
+          444.2,
+          400.1
+        ]
+      }
+    ]
+  }
+]

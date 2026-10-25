@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { clsx } from 'clsx';
 import { useDetection } from '@/context/DetectionContext';
 import { Card, CardHeader } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -183,7 +184,7 @@ export const SettingsPage: React.FC = () => {
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-xs font-semibold text-text-primary">
-                Confidence Threshold (conf)
+                Confidence Threshold (conf - min 5%)
               </label>
               <span className="font-mono text-xs font-bold text-accent-cyan">
                 {Math.round(formState.confidenceThreshold * 100)}%
@@ -193,18 +194,46 @@ export const SettingsPage: React.FC = () => {
               type="range"
               min="0.05"
               max="0.95"
-              step="0.05"
+              step="0.01"
               value={formState.confidenceThreshold}
               onChange={(e) =>
                 setFormState((prev) => ({
                   ...prev,
-                  confidenceThreshold: parseFloat(e.target.value),
+                  confidenceThreshold: Math.max(0.05, parseFloat(e.target.value)),
                 }))
               }
               className="w-full h-1.5 bg-background-secondary rounded-lg appearance-none cursor-pointer accent-accent-cyan"
             />
-            <p className="text-[11px] text-text-muted mt-1">
-              Detections with confidence below this value will be filtered out. Default: 25%.
+            {/* Presets */}
+            <div className="flex items-center justify-between gap-1 pt-1.5">
+              {[
+                { label: '5% (Min)', val: 0.05 },
+                { label: '10%', val: 0.10 },
+                { label: '25% (Std)', val: 0.25 },
+                { label: '50%', val: 0.50 },
+              ].map((p) => (
+                <button
+                  type="button"
+                  key={p.label}
+                  onClick={() =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      confidenceThreshold: p.val,
+                    }))
+                  }
+                  className={clsx(
+                    'px-2 py-0.5 rounded text-[10px] font-mono border transition-colors',
+                    Math.abs(formState.confidenceThreshold - p.val) < 0.005
+                      ? 'bg-accent-cyan text-background font-semibold border-accent-cyan'
+                      : 'bg-background-card text-text-muted border-border hover:text-text-primary'
+                  )}
+                >
+                  {p.label}
+                </button>
+              ))}
+            </div>
+            <p className="text-[11px] text-text-muted mt-1.5">
+              Detections with confidence below this value will be filtered out. Minimum allowed threshold: 5% (0.05).
             </p>
           </div>
 
@@ -233,7 +262,7 @@ export const SettingsPage: React.FC = () => {
               className="w-full h-1.5 bg-background-secondary rounded-lg appearance-none cursor-pointer accent-accent-cyan"
             />
             <p className="text-[11px] text-text-muted mt-1">
-              Controls overlap suppression for duplicate bounding boxes. Default: 45%.
+              Controls overlap suppression for duplicate bounding boxes. Default: 70%.
             </p>
           </div>
 
@@ -252,10 +281,10 @@ export const SettingsPage: React.FC = () => {
               }
               className="w-full bg-background-secondary border border-border rounded-lg px-3 py-2 text-xs text-text-primary focus:outline-none focus:border-accent-cyan"
             >
-              <option value={320}>320 × 320 px (Fastest)</option>
-              <option value={640}>640 × 640 px (Standard / Model Default)</option>
-              <option value={768}>768 × 768 px (High Precision)</option>
-              <option value={1024}>1024 × 1024 px (Small Objects / License Plates)</option>
+              <option value={640}>640 × 640 px (Standard)</option>
+              <option value={768}>768 × 768 px (Medium)</option>
+              <option value={1024}>1024 × 1024 px (High)</option>
+              <option value={1280}>1280 × 1280 px (Full Resolution - Recommended)</option>
             </select>
           </div>
 
@@ -283,7 +312,7 @@ export const SettingsPage: React.FC = () => {
         </div>
       </Card>
 
-      {/* Visual Canvas Preferences */}
+      {/* Visualization & Annotation Preferences */}
       <Card>
         <CardHeader
           title="Visualization Preferences"

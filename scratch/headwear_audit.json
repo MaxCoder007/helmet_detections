@@ -1,0 +1,734 @@
+[
+  {
+    "scenario": "Scenario 1: Single unhelmeted rider",
+    "filename": "train-no-helmet-374-_jpg.rf.e4e768d53dbbb008832f00979e481281.jpg",
+    "image_size": [
+      640,
+      640
+    ],
+    "headwear_count": 9,
+    "headwear": [
+      {
+        "id": "det_1",
+        "class_name": "no_helmet",
+        "confidence": 0.5156,
+        "bbox": [
+          344.2,
+          81.1,
+          401.5,
+          142.0
+        ],
+        "center": [
+          372.9,
+          111.5
+        ],
+        "size": [
+          57.3,
+          60.9
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_2",
+        "class_name": "no_helmet",
+        "confidence": 0.0274,
+        "bbox": [
+          629.5,
+          0.0,
+          640.0,
+          47.9
+        ],
+        "center": [
+          634.8,
+          23.9
+        ],
+        "size": [
+          10.5,
+          47.9
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_3",
+        "class_name": "no_helmet",
+        "confidence": 0.0143,
+        "bbox": [
+          39.3,
+          297.1,
+          213.1,
+          405.3
+        ],
+        "center": [
+          126.2,
+          351.2
+        ],
+        "size": [
+          173.8,
+          108.2
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_5",
+        "class_name": "no_helmet",
+        "confidence": 0.0065,
+        "bbox": [
+          0.0,
+          415.0,
+          43.9,
+          459.1
+        ],
+        "center": [
+          21.9,
+          437.1
+        ],
+        "size": [
+          43.9,
+          44.1
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_6",
+        "class_name": "no_helmet",
+        "confidence": 0.0061,
+        "bbox": [
+          0.0,
+          510.1,
+          81.3,
+          611.3
+        ],
+        "center": [
+          40.6,
+          560.7
+        ],
+        "size": [
+          81.3,
+          101.2
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_8",
+        "class_name": "no_helmet",
+        "confidence": 0.0042,
+        "bbox": [
+          584.1,
+          552.1,
+          640.0,
+          640.0
+        ],
+        "center": [
+          612.0,
+          596.0
+        ],
+        "size": [
+          55.9,
+          87.9
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_13",
+        "class_name": "helmet",
+        "confidence": 0.0025,
+        "bbox": [
+          219.5,
+          313.2,
+          316.5,
+          426.0
+        ],
+        "center": [
+          268.0,
+          369.6
+        ],
+        "size": [
+          97.0,
+          112.8
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_15",
+        "class_name": "no_helmet",
+        "confidence": 0.0017,
+        "bbox": [
+          370.5,
+          564.9,
+          503.7,
+          639.8
+        ],
+        "center": [
+          437.1,
+          602.3
+        ],
+        "size": [
+          133.2,
+          74.9
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_16",
+        "class_name": "helmet",
+        "confidence": 0.0015,
+        "bbox": [
+          311.5,
+          0.0,
+          373.2,
+          13.8
+        ],
+        "center": [
+          342.4,
+          6.9
+        ],
+        "size": [
+          61.7,
+          13.8
+        ],
+        "overlaps": []
+      }
+    ],
+    "overlay_image": "C:\\Users\\heman\\.gemini\\antigravity\\brain\\228f5cd0-3cd9-42dc-ae34-d9f945ae3429\\overlay_train-no-helmet-374-_jpg.rf.e4e768d53dbbb008832f00979e481281.jpg"
+  },
+  {
+    "scenario": "Scenario 2: Single helmeted rider",
+    "filename": "IMG_0533_JPG.rf.71c0ee72cc517a949056e85645299a3a.jpg",
+    "image_size": [
+      3520,
+      1980
+    ],
+    "headwear_count": 4,
+    "headwear": [
+      {
+        "id": "det_1",
+        "class_name": "helmet",
+        "confidence": 0.7688,
+        "bbox": [
+          1202.4,
+          806.5,
+          1305.6,
+          910.5
+        ],
+        "center": [
+          1254.0,
+          858.5
+        ],
+        "size": [
+          103.2,
+          104.0
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_2",
+        "class_name": "no_helmet",
+        "confidence": 0.6278,
+        "bbox": [
+          2881.3,
+          782.1,
+          2995.1,
+          913.3
+        ],
+        "center": [
+          2938.2,
+          847.7
+        ],
+        "size": [
+          113.8,
+          131.2
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_3",
+        "class_name": "no_helmet",
+        "confidence": 0.6272,
+        "bbox": [
+          2997.7,
+          743.8,
+          3110.3,
+          875.2
+        ],
+        "center": [
+          3054.0,
+          809.5
+        ],
+        "size": [
+          112.6,
+          131.4
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_8",
+        "class_name": "no_helmet",
+        "confidence": 0.0012,
+        "bbox": [
+          304.2,
+          739.1,
+          432.7,
+          1016.3
+        ],
+        "center": [
+          368.4,
+          877.7
+        ],
+        "size": [
+          128.5,
+          277.2
+        ],
+        "overlaps": []
+      }
+    ],
+    "overlay_image": "C:\\Users\\heman\\.gemini\\antigravity\\brain\\228f5cd0-3cd9-42dc-ae34-d9f945ae3429\\overlay_IMG_0533_JPG.rf.71c0ee72cc517a949056e85645299a3a.jpg"
+  },
+  {
+    "scenario": "Scenario 3: Multiple riders in same image",
+    "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+    "image_size": [
+      640,
+      640
+    ],
+    "headwear_count": 4,
+    "headwear": [
+      {
+        "id": "det_0",
+        "class_name": "no_helmet",
+        "confidence": 0.9251,
+        "bbox": [
+          259.6,
+          68.8,
+          327.3,
+          199.8
+        ],
+        "center": [
+          293.5,
+          134.3
+        ],
+        "size": [
+          67.7,
+          131.0
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_3",
+        "class_name": "no_helmet",
+        "confidence": 0.2642,
+        "bbox": [
+          371.3,
+          49.8,
+          430.7,
+          162.3
+        ],
+        "center": [
+          401.0,
+          106.1
+        ],
+        "size": [
+          59.4,
+          112.5
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_11",
+        "class_name": "no_helmet",
+        "confidence": 0.0013,
+        "bbox": [
+          618.7,
+          353.6,
+          640.0,
+          415.3
+        ],
+        "center": [
+          629.4,
+          384.5
+        ],
+        "size": [
+          21.3,
+          61.7
+        ],
+        "overlaps": [
+          {
+            "other_id": "det_12",
+            "other_class": "no_helmet",
+            "other_conf": 0.0012,
+            "iou": 0.074,
+            "containment": 0.233,
+            "rel_dx": 0.2,
+            "rel_dy": 1.123
+          }
+        ]
+      },
+      {
+        "id": "det_12",
+        "class_name": "no_helmet",
+        "confidence": 0.0012,
+        "bbox": [
+          610.2,
+          400.9,
+          640.0,
+          506.6
+        ],
+        "center": [
+          625.1,
+          453.8
+        ],
+        "size": [
+          29.8,
+          105.7
+        ],
+        "overlaps": [
+          {
+            "other_id": "det_11",
+            "other_class": "no_helmet",
+            "other_conf": 0.0013,
+            "iou": 0.074,
+            "containment": 0.233,
+            "rel_dx": 0.2,
+            "rel_dy": 1.123
+          }
+        ]
+      }
+    ],
+    "overlay_image": "C:\\Users\\heman\\.gemini\\antigravity\\brain\\228f5cd0-3cd9-42dc-ae34-d9f945ae3429\\overlay_6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg"
+  },
+  {
+    "scenario": "Scenario 4: Two riders close together",
+    "filename": "BikesHelmets248_png.rf.7a098f0ed08009df88b31909fbe8b621.jpg",
+    "image_size": [
+      400,
+      228
+    ],
+    "headwear_count": 3,
+    "headwear": [
+      {
+        "id": "det_0",
+        "class_name": "no_helmet",
+        "confidence": 0.6258,
+        "bbox": [
+          167.6,
+          0.8,
+          212.3,
+          48.4
+        ],
+        "center": [
+          189.9,
+          24.6
+        ],
+        "size": [
+          44.7,
+          47.6
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_2",
+        "class_name": "no_helmet",
+        "confidence": 0.0028,
+        "bbox": [
+          313.2,
+          23.1,
+          389.6,
+          111.5
+        ],
+        "center": [
+          351.4,
+          67.3
+        ],
+        "size": [
+          76.4,
+          88.4
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_3",
+        "class_name": "no_helmet",
+        "confidence": 0.0017,
+        "bbox": [
+          96.6,
+          56.0,
+          139.4,
+          87.8
+        ],
+        "center": [
+          118.0,
+          71.9
+        ],
+        "size": [
+          42.8,
+          31.8
+        ],
+        "overlaps": []
+      }
+    ],
+    "overlay_image": "C:\\Users\\heman\\.gemini\\antigravity\\brain\\228f5cd0-3cd9-42dc-ae34-d9f945ae3429\\overlay_BikesHelmets248_png.rf.7a098f0ed08009df88b31909fbe8b621.jpg"
+  },
+  {
+    "scenario": "Scenario 5: Crowded traffic scene",
+    "filename": "IMG_3142_JPG.rf.dc1259582bba1d89dc472e767a198ab8.jpg",
+    "image_size": [
+      3520,
+      1980
+    ],
+    "headwear_count": 4,
+    "headwear": [
+      {
+        "id": "det_3",
+        "class_name": "no_helmet",
+        "confidence": 0.7266,
+        "bbox": [
+          2512.7,
+          724.0,
+          2690.7,
+          918.4
+        ],
+        "center": [
+          2601.7,
+          821.2
+        ],
+        "size": [
+          178.0,
+          194.4
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_4",
+        "class_name": "helmet",
+        "confidence": 0.6757,
+        "bbox": [
+          2300.9,
+          736.3,
+          2477.6,
+          913.1
+        ],
+        "center": [
+          2389.2,
+          824.7
+        ],
+        "size": [
+          176.7,
+          176.8
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_5",
+        "class_name": "no_helmet",
+        "confidence": 0.3587,
+        "bbox": [
+          480.9,
+          783.6,
+          564.6,
+          863.5
+        ],
+        "center": [
+          522.8,
+          823.5
+        ],
+        "size": [
+          83.7,
+          79.9
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_8",
+        "class_name": "helmet",
+        "confidence": 0.0018,
+        "bbox": [
+          2850.2,
+          1085.6,
+          2968.2,
+          1163.3
+        ],
+        "center": [
+          2909.2,
+          1124.4
+        ],
+        "size": [
+          118.0,
+          77.7
+        ],
+        "overlaps": []
+      }
+    ],
+    "overlay_image": "C:\\Users\\heman\\.gemini\\antigravity\\brain\\228f5cd0-3cd9-42dc-ae34-d9f945ae3429\\overlay_IMG_3142_JPG.rf.dc1259582bba1d89dc472e767a198ab8.jpg"
+  },
+  {
+    "scenario": "Scenario 6: Multiple visible number plates",
+    "filename": "new3_jpg.rf.98fb10ef763d0f0432961aa272f6f57e.jpg",
+    "image_size": [
+      640,
+      640
+    ],
+    "headwear_count": 7,
+    "headwear": [
+      {
+        "id": "det_0",
+        "class_name": "no_helmet",
+        "confidence": 0.8533,
+        "bbox": [
+          333.6,
+          35.2,
+          382.4,
+          141.9
+        ],
+        "center": [
+          358.0,
+          88.6
+        ],
+        "size": [
+          48.8,
+          106.7
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_1",
+        "class_name": "no_helmet",
+        "confidence": 0.8434,
+        "bbox": [
+          213.9,
+          10.1,
+          258.9,
+          97.7
+        ],
+        "center": [
+          236.4,
+          53.9
+        ],
+        "size": [
+          45.0,
+          87.6
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_2",
+        "class_name": "no_helmet",
+        "confidence": 0.824,
+        "bbox": [
+          261.7,
+          24.7,
+          301.8,
+          106.8
+        ],
+        "center": [
+          281.8,
+          65.8
+        ],
+        "size": [
+          40.1,
+          82.1
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_5",
+        "class_name": "no_helmet",
+        "confidence": 0.0238,
+        "bbox": [
+          44.6,
+          0.0,
+          100.6,
+          19.6
+        ],
+        "center": [
+          72.6,
+          9.8
+        ],
+        "size": [
+          56.0,
+          19.6
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_6",
+        "class_name": "no_helmet",
+        "confidence": 0.006,
+        "bbox": [
+          182.7,
+          33.3,
+          206.3,
+          83.1
+        ],
+        "center": [
+          194.5,
+          58.2
+        ],
+        "size": [
+          23.6,
+          49.8
+        ],
+        "overlaps": []
+      },
+      {
+        "id": "det_11",
+        "class_name": "no_helmet",
+        "confidence": 0.0018,
+        "bbox": [
+          394.3,
+          359.7,
+          446.5,
+          471.3
+        ],
+        "center": [
+          420.4,
+          415.5
+        ],
+        "size": [
+          52.2,
+          111.6
+        ],
+        "overlaps": [
+          {
+            "other_id": "det_12",
+            "other_class": "no_helmet",
+            "other_conf": 0.0015,
+            "iou": 0.142,
+            "containment": 0.346,
+            "rel_dx": 0.353,
+            "rel_dy": 0.687
+          }
+        ]
+      },
+      {
+        "id": "det_12",
+        "class_name": "no_helmet",
+        "confidence": 0.0015,
+        "bbox": [
+          359.7,
+          277.6,
+          444.2,
+          400.1
+        ],
+        "center": [
+          401.9,
+          338.9
+        ],
+        "size": [
+          84.5,
+          122.5
+        ],
+        "overlaps": [
+          {
+            "other_id": "det_11",
+            "other_class": "no_helmet",
+            "other_conf": 0.0018,
+            "iou": 0.142,
+            "containment": 0.346,
+            "rel_dx": 0.353,
+            "rel_dy": 0.687
+          }
+        ]
+      }
+    ],
+    "overlay_image": "C:\\Users\\heman\\.gemini\\antigravity\\brain\\228f5cd0-3cd9-42dc-ae34-d9f945ae3429\\overlay_new3_jpg.rf.98fb10ef763d0f0432961aa272f6f57e.jpg"
+  }
+]

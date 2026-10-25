@@ -1,0 +1,1166 @@
+{
+  "success": true,
+  "mode": "normal",
+  "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+  "timestamp": "2026-10-24T17:41:27Z",
+  "inference_time_ms": 397.46,
+  "image_width": 640,
+  "image_height": 640,
+  "annotated_image_url": "/results/annotated_b2f7d7a9fa.jpg",
+  "detections": [
+    {
+      "id": "det_0",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.9251,
+      "bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ]
+    },
+    {
+      "id": "det_1",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.8304,
+      "bbox": [
+        185.6,
+        411.4,
+        288.5,
+        450.3
+      ]
+    },
+    {
+      "id": "det_2",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.6224,
+      "bbox": [
+        187.1,
+        596.6,
+        467.6,
+        639.2
+      ]
+    },
+    {
+      "id": "det_3",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.2642,
+      "bbox": [
+        371.3,
+        49.8,
+        430.7,
+        162.3
+      ]
+    },
+    {
+      "id": "det_4",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0615,
+      "bbox": [
+        0.0,
+        0.2,
+        300.3,
+        285.4
+      ]
+    },
+    {
+      "id": "det_6",
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0146,
+      "bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ]
+    },
+    {
+      "id": "det_9",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0015,
+      "bbox": [
+        334.8,
+        340.2,
+        382.8,
+        364.6
+      ]
+    },
+    {
+      "id": "det_10",
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0014,
+      "bbox": [
+        495.7,
+        487.4,
+        639.1,
+        586.9
+      ]
+    },
+    {
+      "id": "det_11",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0013,
+      "bbox": [
+        618.7,
+        353.6,
+        640.0,
+        415.3
+      ]
+    },
+    {
+      "id": "det_12",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0012,
+      "bbox": [
+        610.2,
+        400.9,
+        640.0,
+        506.6
+      ]
+    }
+  ],
+  "all_candidates": [
+    {
+      "id": "det_0",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.9251,
+      "bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ],
+      "quality_status": "high_confidence",
+      "quality_warnings": [],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 67.7,
+        "height": 131.0,
+        "area": 8868.7,
+        "aspect_ratio": 0.52,
+        "area_pct": 2.17,
+        "height_pct": 20.47,
+        "width_pct": 10.58
+      }
+    },
+    {
+      "id": "det_1",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.8304,
+      "bbox": [
+        185.6,
+        411.4,
+        288.5,
+        450.3
+      ],
+      "quality_status": "high_confidence",
+      "quality_warnings": [],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 102.9,
+        "height": 38.9,
+        "area": 4002.8,
+        "aspect_ratio": 2.65,
+        "area_pct": 0.98,
+        "height_pct": 6.08,
+        "width_pct": 16.08
+      }
+    },
+    {
+      "id": "det_2",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.6224,
+      "bbox": [
+        187.1,
+        596.6,
+        467.6,
+        639.2
+      ],
+      "quality_status": "high_confidence",
+      "quality_warnings": [],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 280.5,
+        "height": 42.6,
+        "area": 11949.3,
+        "aspect_ratio": 6.58,
+        "area_pct": 2.92,
+        "height_pct": 6.66,
+        "width_pct": 43.83
+      }
+    },
+    {
+      "id": "det_3",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.2642,
+      "bbox": [
+        371.3,
+        49.8,
+        430.7,
+        162.3
+      ],
+      "quality_status": "high_confidence",
+      "quality_warnings": [],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 59.4,
+        "height": 112.5,
+        "area": 6682.5,
+        "aspect_ratio": 0.53,
+        "area_pct": 1.63,
+        "height_pct": 17.58,
+        "width_pct": 9.28
+      }
+    },
+    {
+      "id": "det_4",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0615,
+      "bbox": [
+        0.0,
+        0.2,
+        300.3,
+        285.4
+      ],
+      "quality_status": "suspicious_geometry",
+      "quality_warnings": [
+        "Oversized number plate: occupies 20.91% of image (300.3\u00d7285.2px, 44.56% img height). Likely vehicle body or rider false positive."
+      ],
+      "is_suspicious": true,
+      "geometry": {
+        "width": 300.3,
+        "height": 285.2,
+        "area": 85645.6,
+        "aspect_ratio": 1.05,
+        "area_pct": 20.91,
+        "height_pct": 44.56,
+        "width_pct": 46.92
+      }
+    },
+    {
+      "id": "det_6",
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0146,
+      "bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ],
+      "quality_status": "low_confidence",
+      "quality_warnings": [
+        "Low confidence prediction (1.46%): verify visually."
+      ],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 298.0,
+        "height": 307.5,
+        "area": 91635.0,
+        "aspect_ratio": 0.97,
+        "area_pct": 22.37,
+        "height_pct": 48.05,
+        "width_pct": 46.56
+      }
+    },
+    {
+      "id": "det_9",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0015,
+      "bbox": [
+        334.8,
+        340.2,
+        382.8,
+        364.6
+      ],
+      "quality_status": "low_confidence",
+      "quality_warnings": [
+        "Low confidence prediction (0.15%): verify visually."
+      ],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 48.0,
+        "height": 24.4,
+        "area": 1171.2,
+        "aspect_ratio": 1.97,
+        "area_pct": 0.29,
+        "height_pct": 3.81,
+        "width_pct": 7.5
+      }
+    },
+    {
+      "id": "det_10",
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0014,
+      "bbox": [
+        495.7,
+        487.4,
+        639.1,
+        586.9
+      ],
+      "quality_status": "low_confidence",
+      "quality_warnings": [
+        "Low confidence prediction (0.14%): verify visually."
+      ],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 143.4,
+        "height": 99.5,
+        "area": 14268.3,
+        "aspect_ratio": 1.44,
+        "area_pct": 3.48,
+        "height_pct": 15.55,
+        "width_pct": 22.41
+      }
+    },
+    {
+      "id": "det_11",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0013,
+      "bbox": [
+        618.7,
+        353.6,
+        640.0,
+        415.3
+      ],
+      "quality_status": "low_confidence",
+      "quality_warnings": [
+        "Low confidence prediction (0.13%): verify visually."
+      ],
+      "is_suspicious": false,
+      "geometry": {
+        "width": 21.3,
+        "height": 61.7,
+        "area": 1314.2,
+        "aspect_ratio": 0.35,
+        "area_pct": 0.32,
+        "height_pct": 9.64,
+        "width_pct": 3.33
+      }
+    },
+    {
+      "id": "det_12",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0012,
+      "bbox": [
+        610.2,
+        400.9,
+        640.0,
+        506.6
+      ],
+      "quality_status": "suspicious_geometry",
+      "quality_warnings": [
+        "Abnormal headwear aspect ratio (W/H=0.28)."
+      ],
+      "is_suspicious": true,
+      "geometry": {
+        "width": 29.8,
+        "height": 105.7,
+        "area": 3149.9,
+        "aspect_ratio": 0.28,
+        "area_pct": 0.77,
+        "height_pct": 16.52,
+        "width_pct": 4.66
+      }
+    }
+  ],
+  "quality_summary": {
+    "high_confidence": 4,
+    "low_confidence": 4,
+    "potential_duplicate": 0,
+    "suspicious_geometry": 2
+  },
+  "raw_detections_count": 14,
+  "after_yolo_nms_count": 14,
+  "after_duplicate_suppression_count": 11,
+  "after_conflict_resolution_count": 10,
+  "suppressed_duplicates_count": 3,
+  "suppressed_conflicts_count": 1,
+  "suppressed_duplicates": [
+    {
+      "type": "duplicate_suppression",
+      "retained": {
+        "id": "det_0",
+        "class_name": "no_helmet",
+        "confidence": 0.9251,
+        "bbox": [
+          259.6,
+          68.8,
+          327.3,
+          199.8
+        ]
+      },
+      "suppressed": {
+        "id": "det_8",
+        "class_name": "no_helmet",
+        "confidence": 0.0027,
+        "bbox": [
+          269.4,
+          141.5,
+          324.8,
+          201.0
+        ]
+      },
+      "iou": 0.3615,
+      "containment": 0.9798,
+      "reason": "Duplicate no_helmet: Containment 0.98 >= 0.65 with det_0 (92.5%)"
+    },
+    {
+      "type": "duplicate_suppression",
+      "retained": {
+        "id": "det_2",
+        "class_name": "number_plate",
+        "confidence": 0.6224,
+        "bbox": [
+          187.1,
+          596.6,
+          467.6,
+          639.2
+        ]
+      },
+      "suppressed": {
+        "id": "det_7",
+        "class_name": "number_plate",
+        "confidence": 0.0121,
+        "bbox": [
+          300.5,
+          594.7,
+          585.5,
+          639.2
+        ]
+      },
+      "iou": 0.4065,
+      "containment": 0.5957,
+      "reason": "Duplicate number_plate: IoU 0.41 >= 0.35 with det_2 (62.2%)"
+    },
+    {
+      "type": "duplicate_suppression",
+      "retained": {
+        "id": "det_2",
+        "class_name": "number_plate",
+        "confidence": 0.6224,
+        "bbox": [
+          187.1,
+          596.6,
+          467.6,
+          639.2
+        ]
+      },
+      "suppressed": {
+        "id": "det_13",
+        "class_name": "number_plate",
+        "confidence": 0.0011,
+        "bbox": [
+          65.5,
+          597.8,
+          341.7,
+          639.7
+        ]
+      },
+      "iou": 0.3738,
+      "containment": 0.5531,
+      "reason": "Duplicate number_plate: IoU 0.37 >= 0.35 with det_2 (62.2%)"
+    }
+  ],
+  "resolved_conflicts": [
+    {
+      "retained": {
+        "id": "det_3",
+        "class_name": "no_helmet",
+        "confidence": 0.2642,
+        "bbox": [
+          371.3,
+          49.8,
+          430.7,
+          162.3
+        ]
+      },
+      "suppressed": {
+        "id": "det_5",
+        "class_name": "helmet",
+        "confidence": 0.0505,
+        "bbox": [
+          370.8,
+          50.6,
+          430.8,
+          161.0
+        ]
+      },
+      "iou": 0.972,
+      "reason": "Overlapping opposing headwear (no_helmet 0.264 > helmet 0.051, IoU=0.97)"
+    }
+  ],
+  "counts": {
+    "helmet": 0,
+    "no_helmet": 4,
+    "number_plate": 4,
+    "pillion": 0,
+    "rider": 2
+  },
+  "records": [
+    {
+      "id": "rec_91b565145f4b",
+      "timestamp": "2026-10-24T17:41:27Z",
+      "analysis_type": "image",
+      "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+      "registration_number": null,
+      "ocr_status": "unreadable",
+      "ocr_confidence": 0.0617,
+      "raw_ocr_text": "WNOM",
+      "helmet_status": "no_helmet_detected",
+      "helmet_confidence": 0.9251,
+      "association_status": "associated",
+      "association_confidence": 0.774,
+      "violation_candidate": false,
+      "review_required": true,
+      "review_status": "pending_review",
+      "evidence_image_url": "/results/annotated_b2f7d7a9fa.jpg",
+      "plate_crop_base64": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAArAG4DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDnf2vy+qm2sbeZFKzJFtJz5iuhJAx9K8bm0PVNe1Sb+ztG1G9toVjUtDbvIFOxeCVGOtej/Fu+XxLr808Tl1tr6IBT04Q4x+ddL8QNf1H4FeHPDT6ToVrqP9pHZM80u1mZnO1fpjHNAHjzaJqliu2XR9QhABzvt3XGOvUe9c3f6TPBdSTSWc8bAjh4yD/KvqHw58U7HV5Lqzv9As/tcc9paCIlnG64z+HbH4VveL7zwJ4a8YaZ4a1bQNPXVtRj3iL7OTtGFOQwUgfe9etAHx/bypHdRqfkYkHB4p+qOwuriORlERjQqW46kg819I6PoPw78fePL/R9JtbVkspZopn+xmMqyFwQMgZwVxXTeIv2YvDmpXTJ9ue1UDaDHAOx7D6UAfGUPhK3nRRHPESnGN+a2NN8DQXEboMGUnIKseD68V9Pr+yHokm9tP8AEF1I5PTyFX+dLB+yPrunuWtbme5XadpaWJc/XmgD5h1HwDcxO8sZMhEDRKkeWbecHd61HBFrOnanp8htpZIRPHC8SwOWwSNzHjpxnNfTf/DNfjiK7jhFiAWPMn2uL/Guu0b4Fy6Eiy6jp8d1c5wVkZGIOcDkHntQB5JoPwv1fX4IpTDJZxuoY/aIpEPT6V6V4b+CWm2ZSS/czMcjckrKBx7130UTWMXlzYh2jooGAP8A9VW2uYre1aXO/aDkMhznjFAHm/xT1fT/AAN4be2ssQSeXtxIVLE9Pr1ri/2fPBl9qUOqa5OkgFw/lqrKwJHBz9K5v4natdfEPx5Do1oXeOSZkYB9gUbickNxj5a+pfBfhuDQdCt9OtkWNYEVWKAAEgYJ4oA+MLKMa/caRdB/MW41BNqB/vY3g/XpX078T4FuPEHw50kLsb7fb3LiVQRsSVVOQegGeTXyZYs2hfC7w1raEm4ikeQDAU58yTnPX0r3bSP2mdB1l9Ovdc063F/ax+WskiSSEfMM/wAB/u0AcB4fhu7r9oSzcBntte1JrjKxkp/okqquMcY+c17P8Rn0XxV8TI9LgkhY6aj3GrymVWjCIA8Y3Zyh+Rxg46VgaV8UfhbZavpWqJNFBPpomMaRWUvzNI6sxz5fHK14r4/8ZaDF4516+0jxbeRpr0bQTBLd0CphhxlR/eNAGlD8abbwP458Qar4cgljtbq4NvDNMqOJVjdgXDdwykHPcV9Z/C/4hTeNvAR1u9heIlCGJQKG+RSSe3Oe1fGPww8AaBqEMP2vVptRitiVAuIM7hjaOfoK+r/D95Z2PgG50rR0VXWLYkMaeWucKMkngdKAPLf2fLDUbb4p213JMJ7TxDa/bWgQEvGG3AfePbaK9c+Dl5J4lj8S3VyS8MepGC3I67TEhyDnHXNeA+DNU8ceC/DsPjO70aO2fRbNdMFut6jrIoO4scHg/vP0r6I+AegXOi/DfTzdRolzdkTyAPnkDA579KAO1uYUsLaSdrhbVUy7NcNtx/SsKfxtrOlQale2RTUILS1edRbQiUyMAGAX1OePrWX8crPVNZ+HOr2mkO0OoyRtseNwpHykdT7kflWL4G1+T4b/AAe+268De6qqmKOK4/eeZMfMMSFl42nA5+goA1NH/aZSTw5a6nq1pLDLcXLWv2PYkUqsshjyyHnFbt78S/BviG7l0S4bzbx4BcukFzGCikFtxUHIGM89ODXg15pl5oXirQ0udGttRtEk86/tp5h5cJuSJEI/vYUnp3xXdal4H0q6+L9rBZpHYNNo8tw13AgDssttnY2eoRcgfUUAbnw9+EfgeXxNd6l4fvIZ9UmZwpW+WUBgGyuAThvavRLWxktZ5opEdJEYqwcHJIPPWvGP2atNGma7q8djdyXVtHqtzHFK67G+RnBOOxxivoXzBJq99cSneJJXK5OeCQRQB+Xvi9ZtK0bTdMZwII7BzsII+cvkfjzUljGWso3Cr93sKf8AGhjFewhDtARAMf7oqTSv+QZB/uCgDD1qzMqnDqCB0HFedazYtKzI25WB4LZGPxr1q4iSQPuUGuO8RW8cYyqAHNAHGRaMYlBjkk3fxbWOT+tbOlXWsWz7rOdo2QjGSxP4881rxwoI0IUZI5NbumWcJgiPlrkvyfxoA6DwD4+8Zza1DGk8AtgvKy2p6jr7c8dfSvWPEXxP8WeDdHElx4g0qSfbkRoBv/InP6V5np3+hvvh/dPuHK8VheLrqXUblvtT+fjgbxmgDvrH9tzVLbT0s9Rsprr5/neK3Tlc+pq3rnxqsPivo7aZrXhfXRAjrcWcghWNGKhsYPRuTXkPg7SLK78UWsM1rFJETyjLxX114d8I6Kkdog0y2ConyjyxxzQB59b+KNJu9b0X7X5ukRW6AXMmoSiLO0oI8EnAwqt+ddBovinUmvrvW7fxDpMs9iDHphjkD5ibKsvX5vlC/ma5b9onRrG00aN4bWKJ2mjUlFxkbuldd4M8O6Yng/S5BZQ7zChLFcknFAHRfB3xG2laxJLNLHdatqV/cX01vbdUMxLHCDkAc/8AfJr1rx94tTwpaWr+bseaVxhmxwAK5P4b+G9Li1Ke8TT7dLsJgTLGA4+V+/4mud/aFupWv9PQyEqEBAPrlh/QUAf/2Q==",
+      "plate_bbox": [
+        186,
+        411,
+        288,
+        450
+      ],
+      "rider_bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ],
+      "helmet_bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ],
+      "notes": "Rider and number plate successfully associated by spatial geometry."
+    },
+    {
+      "id": "rec_0d028d95a44e",
+      "timestamp": "2026-10-24T17:41:27Z",
+      "analysis_type": "image",
+      "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+      "registration_number": null,
+      "ocr_status": "unreadable",
+      "ocr_confidence": 0.2781,
+      "raw_ocr_text": "SHTE STK CM G 1828880651",
+      "helmet_status": "no_helmet_detected",
+      "helmet_confidence": 0.9251,
+      "association_status": "associated",
+      "association_confidence": 0.474,
+      "violation_candidate": false,
+      "review_required": true,
+      "review_status": "pending_review",
+      "evidence_image_url": "/results/annotated_b2f7d7a9fa.jpg",
+      "plate_crop_base64": "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",
+      "plate_bbox": [
+        187,
+        597,
+        468,
+        639
+      ],
+      "rider_bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ],
+      "helmet_bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ],
+      "notes": "Rider and number plate successfully associated by spatial geometry."
+    },
+    {
+      "id": "rec_ff40931dc254",
+      "timestamp": "2026-10-24T17:41:27Z",
+      "analysis_type": "image",
+      "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+      "registration_number": null,
+      "ocr_status": "unreadable",
+      "ocr_confidence": 0.0,
+      "raw_ocr_text": "",
+      "helmet_status": "no_helmet_detected",
+      "helmet_confidence": 0.9251,
+      "association_status": "associated",
+      "association_confidence": 0.98,
+      "violation_candidate": false,
+      "review_required": true,
+      "review_status": "pending_review",
+      "evidence_image_url": "/results/annotated_b2f7d7a9fa.jpg",
+      "plate_crop_base64": "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",
+      "plate_bbox": [
+        0,
+        0,
+        300,
+        285
+      ],
+      "rider_bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ],
+      "helmet_bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ],
+      "notes": "Rider and number plate successfully associated by spatial geometry."
+    },
+    {
+      "id": "rec_d69bf599ba88",
+      "timestamp": "2026-10-24T17:41:27Z",
+      "analysis_type": "image",
+      "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+      "registration_number": null,
+      "ocr_status": "unreadable",
+      "ocr_confidence": 0.0,
+      "raw_ocr_text": "",
+      "helmet_status": "no_helmet_detected",
+      "helmet_confidence": 0.9251,
+      "association_status": "associated",
+      "association_confidence": 0.575,
+      "violation_candidate": false,
+      "review_required": true,
+      "review_status": "pending_review",
+      "evidence_image_url": "/results/annotated_b2f7d7a9fa.jpg",
+      "plate_crop_base64": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAbADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDI+IFpqGveJ/DvhJQQbCOMzAFTvKqueDgDBVhwT0rvp7bS4LiAR3ix3doiwmAISCzYQsT6DqK82/aV+K9v4c8YWWowoo1XU7oQoNqkKiuquW5G3KycYBrnD+0BoGteIpBdLdII7aOCYx+WoMig7iPn6buh6+woA7D4lyR6XpbIJzKzEKUxgygcgn0PFdnoPwiWy/Y18U3WraYJLvU2Wbc5A2x/uQOh+ble+OtebT6n4T8VhQupGKU7RGLq6RQACTyAx7Yr1I/FXWbvwPf+FEv9Fl025tBaobcAuMMDnIyP4V7etAH5dQsZIYpWIJYbiV6Z74617N8GrtYioDgZYc5561oa3+yXrmmWhNhPaTIuXyJpGIXPfEfFVvCngnVfCOu21peIql8OjDdtcZA4JUZ60AfWlrrFwLaEC7ONg7e1Fc/bxTfZ4uR90dj6fSigDyb9oX4a6x401vTtftZ5UjhlZHRY1ZYtxQKckj0BrxTX/g/468PapMyWst1FOWkGZoFypORxuyOK+r/hhqNxq/hKVLxxcKIVPzIvufSuN12+uLa7k8uVh8zLyc8biMc0AfL1x4g1rQZFW90/yJFGB++Q8/gDW1pHxrvdPlTydQewZeoRScn0ztr1jxFHHdX6+bFE/wAoOTGvoPauXvtA06bR53eziLByc4xzlKANDSP2ptU0qzlCanLdG4j8tl8woQD6/LXY+G/iOfixeeGybbB0+NoDP5pffmUt90gY9Pwr5BkXZkqSD7GvpL9meJIrWIoMEvnP/AjQB9WRabcpEigvgAAcUVsRTP5SfMegooA//9k=",
+      "plate_bbox": [
+        335,
+        340,
+        383,
+        365
+      ],
+      "rider_bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ],
+      "helmet_bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ],
+      "notes": "Rider and number plate successfully associated by spatial geometry."
+    },
+    {
+      "id": "rec_4e068bd576b1",
+      "timestamp": "2026-10-24T17:41:27Z",
+      "analysis_type": "image",
+      "filename": "6_jpg.rf.c41d9d7001d188962cdff59a75b8a373.jpg",
+      "registration_number": null,
+      "ocr_status": "no_plate",
+      "ocr_confidence": 0.0,
+      "raw_ocr_text": "",
+      "helmet_status": "uncertain",
+      "helmet_confidence": 0.0,
+      "association_status": "no_plate",
+      "association_confidence": 0.0,
+      "violation_candidate": false,
+      "review_required": false,
+      "review_status": "pending_review",
+      "evidence_image_url": "/results/annotated_b2f7d7a9fa.jpg",
+      "plate_crop_base64": "",
+      "plate_bbox": null,
+      "rider_bbox": [
+        495.7,
+        487.4,
+        639.1,
+        586.9
+      ],
+      "helmet_bbox": null,
+      "notes": "Rider visible without a detectable number plate."
+    }
+  ],
+  "candidate_trace": [
+    {
+      "id": "det_0",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.9251,
+      "bbox": [
+        259.6,
+        68.8,
+        327.3,
+        199.8
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.9251)"
+    },
+    {
+      "id": "det_1",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.8304,
+      "bbox": [
+        185.6,
+        411.4,
+        288.5,
+        450.3
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.8304)"
+    },
+    {
+      "id": "det_2",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.6224,
+      "bbox": [
+        187.1,
+        596.6,
+        467.6,
+        639.2
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.6224)"
+    },
+    {
+      "id": "det_3",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.2642,
+      "bbox": [
+        371.3,
+        49.8,
+        430.7,
+        162.3
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.2642)"
+    },
+    {
+      "id": "det_4",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0615,
+      "bbox": [
+        0.0,
+        0.2,
+        300.3,
+        285.4
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.0615)"
+    },
+    {
+      "id": "det_5",
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.0505,
+      "bbox": [
+        370.8,
+        50.6,
+        430.8,
+        161.0
+      ],
+      "status": "suppressed_conflict",
+      "reason": "Overlapping opposing headwear (no_helmet 0.264 > helmet 0.051, IoU=0.97)"
+    },
+    {
+      "id": "det_6",
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0146,
+      "bbox": [
+        0.0,
+        15.3,
+        298.0,
+        322.8
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.0146)"
+    },
+    {
+      "id": "det_7",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0121,
+      "bbox": [
+        300.5,
+        594.7,
+        585.5,
+        639.2
+      ],
+      "status": "suppressed_duplicate",
+      "reason": "Duplicate number_plate: IoU 0.41 >= 0.35 with det_2 (62.2%)"
+    },
+    {
+      "id": "det_8",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0027,
+      "bbox": [
+        269.4,
+        141.5,
+        324.8,
+        201.0
+      ],
+      "status": "suppressed_duplicate",
+      "reason": "Duplicate no_helmet: Containment 0.98 >= 0.65 with det_0 (92.5%)"
+    },
+    {
+      "id": "det_9",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0015,
+      "bbox": [
+        334.8,
+        340.2,
+        382.8,
+        364.6
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.0015)"
+    },
+    {
+      "id": "det_10",
+      "class_id": 4,
+      "class_name": "rider",
+      "confidence": 0.0014,
+      "bbox": [
+        495.7,
+        487.4,
+        639.1,
+        586.9
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.0014)"
+    },
+    {
+      "id": "det_11",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0013,
+      "bbox": [
+        618.7,
+        353.6,
+        640.0,
+        415.3
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.0013)"
+    },
+    {
+      "id": "det_12",
+      "class_id": 1,
+      "class_name": "no_helmet",
+      "confidence": 0.0012,
+      "bbox": [
+        610.2,
+        400.9,
+        640.0,
+        506.6
+      ],
+      "status": "retained",
+      "reason": "Retained prediction (conf=0.0012)"
+    },
+    {
+      "id": "det_13",
+      "class_id": 2,
+      "class_name": "number_plate",
+      "confidence": 0.0011,
+      "bbox": [
+        65.5,
+        597.8,
+        341.7,
+        639.7
+      ],
+      "status": "suppressed_duplicate",
+      "reason": "Duplicate number_plate: IoU 0.37 >= 0.35 with det_2 (62.2%)"
+    }
+  ],
+  "settings_used": {
+    "mode": "normal",
+    "conf": 0.001,
+    "effective_conf": 0.001,
+    "iou": 0.45,
+    "imgsz": 1280,
+    "max_det": 300,
+    "conflict_iou": 0.5,
+    "duplicate_iou": 0.45,
+    "duplicate_containment": 0.65,
+    "plate_iou": 0.35,
+    "plate_containment": 0.5
+  },
+  "diagnostics": {
+    "mode": "normal",
+    "model_sha256": "804aa5e8c5b4e56df7eca9d18a7f6bdb9e1ab87dc30203f8fdf1578429a344ef",
+    "model_md5": "ae8c70700abe24e22bc9e59f938a9ff0",
+    "model_filename": "best.pt",
+    "model_classes": {
+      "0": "helmet",
+      "1": "no_helmet",
+      "2": "number_plate",
+      "3": "pillion",
+      "4": "rider"
+    },
+    "device": "cpu",
+    "input_resolution": [
+      640,
+      640
+    ],
+    "inference_resolution": 1280,
+    "conf_threshold": 0.001,
+    "effective_conf": 0.001,
+    "iou_threshold": 0.45,
+    "max_det": 300,
+    "conflict_iou": 0.5,
+    "duplicate_iou": 0.45,
+    "duplicate_containment": 0.65,
+    "plate_iou": 0.35,
+    "plate_containment": 0.5,
+    "raw_detections_count": 14,
+    "raw_counts": {
+      "helmet": 1,
+      "no_helmet": 5,
+      "number_plate": 6,
+      "pillion": 0,
+      "rider": 2
+    },
+    "after_yolo_nms_count": 14,
+    "after_duplicate_suppression_count": 11,
+    "suppressed_duplicates_count": 3,
+    "after_conflict_resolution_count": 10,
+    "suppressed_conflicts_count": 1,
+    "post_processed_count": 10,
+    "post_processed_counts": {
+      "helmet": 0,
+      "no_helmet": 4,
+      "number_plate": 4,
+      "pillion": 0,
+      "rider": 2
+    },
+    "quality_summary": {
+      "high_confidence": 4,
+      "low_confidence": 4,
+      "potential_duplicate": 0,
+      "suspicious_geometry": 2
+    },
+    "inference_time_ms": 397.46,
+    "candidates": [
+      {
+        "id": "det_0",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.9251,
+        "bbox": [
+          259.6,
+          68.8,
+          327.3,
+          199.8
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.9251)"
+      },
+      {
+        "id": "det_1",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.8304,
+        "bbox": [
+          185.6,
+          411.4,
+          288.5,
+          450.3
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.8304)"
+      },
+      {
+        "id": "det_2",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.6224,
+        "bbox": [
+          187.1,
+          596.6,
+          467.6,
+          639.2
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.6224)"
+      },
+      {
+        "id": "det_3",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.2642,
+        "bbox": [
+          371.3,
+          49.8,
+          430.7,
+          162.3
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.2642)"
+      },
+      {
+        "id": "det_4",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.0615,
+        "bbox": [
+          0.0,
+          0.2,
+          300.3,
+          285.4
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.0615)"
+      },
+      {
+        "id": "det_5",
+        "class_id": 0,
+        "class_name": "helmet",
+        "confidence": 0.0505,
+        "bbox": [
+          370.8,
+          50.6,
+          430.8,
+          161.0
+        ],
+        "status": "suppressed_conflict",
+        "reason": "Overlapping opposing headwear (no_helmet 0.264 > helmet 0.051, IoU=0.97)"
+      },
+      {
+        "id": "det_6",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0146,
+        "bbox": [
+          0.0,
+          15.3,
+          298.0,
+          322.8
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.0146)"
+      },
+      {
+        "id": "det_7",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.0121,
+        "bbox": [
+          300.5,
+          594.7,
+          585.5,
+          639.2
+        ],
+        "status": "suppressed_duplicate",
+        "reason": "Duplicate number_plate: IoU 0.41 >= 0.35 with det_2 (62.2%)"
+      },
+      {
+        "id": "det_8",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0027,
+        "bbox": [
+          269.4,
+          141.5,
+          324.8,
+          201.0
+        ],
+        "status": "suppressed_duplicate",
+        "reason": "Duplicate no_helmet: Containment 0.98 >= 0.65 with det_0 (92.5%)"
+      },
+      {
+        "id": "det_9",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.0015,
+        "bbox": [
+          334.8,
+          340.2,
+          382.8,
+          364.6
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.0015)"
+      },
+      {
+        "id": "det_10",
+        "class_id": 4,
+        "class_name": "rider",
+        "confidence": 0.0014,
+        "bbox": [
+          495.7,
+          487.4,
+          639.1,
+          586.9
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.0014)"
+      },
+      {
+        "id": "det_11",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0013,
+        "bbox": [
+          618.7,
+          353.6,
+          640.0,
+          415.3
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.0013)"
+      },
+      {
+        "id": "det_12",
+        "class_id": 1,
+        "class_name": "no_helmet",
+        "confidence": 0.0012,
+        "bbox": [
+          610.2,
+          400.9,
+          640.0,
+          506.6
+        ],
+        "status": "retained",
+        "reason": "Retained prediction (conf=0.0012)"
+      },
+      {
+        "id": "det_13",
+        "class_id": 2,
+        "class_name": "number_plate",
+        "confidence": 0.0011,
+        "bbox": [
+          65.5,
+          597.8,
+          341.7,
+          639.7
+        ],
+        "status": "suppressed_duplicate",
+        "reason": "Duplicate number_plate: IoU 0.37 >= 0.35 with det_2 (62.2%)"
+      }
+    ]
+  }
+}
